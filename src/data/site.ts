@@ -84,45 +84,52 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const ACHIEVEMENTS: Achievement[] = [
   {
     value: "25+",
-    label: "Client projects",
-    detail: "Websites and digital work delivered across different business needs.",
+    label: "Client projects shipped",
+    detail: "Websites and digital work for clinics, studios, schools, shops and manufacturers.",
   },
   {
     value: "7+",
-    label: "Companies helped",
-    detail: "Sales-focused support through practical, budget-conscious marketing.",
+    label: "Businesses helped sell more",
+    detail: "Marketing planned around real budgets and measured in enquiries, not likes.",
   },
   {
     value: "4",
-    label: "Selected live projects",
-    detail: "Public work spanning architecture, healthcare, education, and manufacturing.",
+    label: "Live sites you can visit",
+    detail: "Architecture, healthcare, education and manufacturing, all online today.",
   },
   {
     value: "1",
-    label: "Company founded",
-    detail: "Cave Technologies, built to help organizations establish and grow online.",
+    label: "Agency founded",
+    detail: "Cave Technologies, built to help Bangladeshi businesses get online and grow.",
   },
 ];
 
+/*
+  The practice as three layers, top to bottom: what visitors see, how they
+  arrive, and what keeps it all running. The order is meaningful.
+*/
 export const EXPERTISE = [
   {
     number: "01",
+    layer: "What people see",
     title: "Web development",
-    body: "Modern, fast, maintainable websites built with React, TypeScript, Next.js, and a practical approach to the business problem behind the interface.",
+    body: "Fast, clear websites in React, TypeScript and Next.js, shaped around what the business needs a visitor to understand and do.",
     href: "/services/website-development",
     linkLabel: "Website development",
   },
   {
     number: "02",
+    layer: "How they find you",
     title: "Digital marketing",
-    body: "Search, social, and paid campaigns designed around clear objectives, careful budgets, and measurable business outcomes rather than vanity metrics.",
+    body: "Search, social and paid campaigns with a clear goal and a sensible budget, judged by enquiries and sales rather than vanity numbers.",
     href: "/services/digital-marketing",
     linkLabel: "Digital marketing",
   },
   {
     number: "03",
+    layer: "What keeps it running",
     title: "Linux infrastructure",
-    body: "Bare-metal servers, Linux administration, and recovery work — the systems layer that keeps a website dependable after launch.",
+    body: "Bare-metal servers, Linux administration and recovery: the quiet layer that decides whether the site is up when a customer arrives.",
     href: "/services/linux-infrastructure",
     linkLabel: "Linux infrastructure",
   },
@@ -130,19 +137,19 @@ export const EXPERTISE = [
 
 export const PRINCIPLES = [
   {
-    title: "Business before decoration",
-    body: "A website is a working asset. Clarity, trust, and conversion matter more than adding another effect for its own sake.",
+    title: "The business comes first",
+    body: "A website is a working asset. Clarity, trust and a clear next step matter more than another animation.",
   },
   {
     title: "Simple systems last longer",
-    body: "I prefer maintainable architectures, honest content, and tools that a business can keep using without unnecessary operational weight.",
+    body: "I pick tools a business can keep running without me: maintainable code, honest content, no unnecessary moving parts.",
   },
   {
-    title: "Performance is part of design",
-    body: "Fast delivery, accessible interfaces, sensible image budgets, and stable layouts are design decisions, not afterthoughts.",
+    title: "Speed is part of the design",
+    body: "Fast pages, accessible interfaces, sensible image sizes and stable layouts are decided up front, not patched in later.",
   },
   {
     title: "Own the whole problem",
-    body: "From the first content structure to DNS, email, server recovery, and search visibility, the useful work rarely stops at the browser.",
+    body: "Content, DNS, email, search visibility and server recovery are all part of the job. The useful work rarely stops at the browser.",
   },
 ] as const;

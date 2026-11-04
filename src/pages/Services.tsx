@@ -33,10 +33,10 @@ export function Services() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Practice / Services"
+          eyebrow="Services"
           title={
             <>
-              Digital work with a <span className="italic text-muted">commercial point.</span>
+              Websites, marketing and servers, planned around what your business needs.
             </>
           }
           intro={
@@ -47,9 +47,9 @@ export function Services() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">Direct contact</p>
-              <p className="mt-4 font-serif text-2xl leading-snug">
+              <p className="mt-4 font-display text-2xl leading-snug">
                 Tell me what the business needs to achieve.
               </p>
               <p className="mt-3 text-sm leading-6 text-muted">
@@ -90,7 +90,7 @@ export function Services() {
                   {service.technologies.slice(0, 5).map((technology) => (
                     <li
                       key={technology}
-                      className="border border-line px-2 py-1 text-[0.57rem] font-semibold uppercase tracking-[0.1em] text-muted"
+                      className="border border-line px-2 py-1 text-[0.8rem] font-semibold text-muted rounded-full"
                     >
                       {technology}
                     </li>
@@ -111,13 +111,13 @@ export function Services() {
         </div>
       </section>
 
-      <section className="dark-texture bg-charcoal py-16 text-paper md:py-24">
+      <section className="dark-texture band-sky bg-charcoal py-16 text-paper md:py-24">
         <div className="container-editorial">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="eyebrow text-paper/60">Method / 01—04</p>
+              <p className="eyebrow text-paper/60">How a project runs</p>
               <h2 className="display mt-4 text-[clamp(2.6rem,5vw,4.6rem)]">
-                A clear route from brief to <span className="italic text-paper/65">launch.</span>
+                From first call to launch, in four steps
               </h2>
               <p className="mt-5 max-w-sm text-sm leading-7 text-paper/65">
                 The exact process changes with the scope. The discipline does not: define the job,
@@ -131,7 +131,7 @@ export function Services() {
                   className="border-t border-line-dark py-6 sm:px-6 sm:first:pl-0 sm:[&:nth-child(2n)]:pr-0 sm:[&:nth-child(3)]:pl-0"
                 >
                   <p className="eyebrow text-paper/55">0{index + 1}</p>
-                  <h3 className="mt-8 font-serif text-3xl font-light tracking-[-0.025em]">
+                  <h3 className="mt-8 font-display text-3xl font-semibold tracking-[-0.025em]">
                     {step.title}
                   </h3>
                   <p className="mt-3 max-w-xs text-sm leading-6 text-paper/65">{step.body}</p>
@@ -149,7 +149,7 @@ export function Services() {
           </div>
           <div className="lg:col-span-7">
             <h2 className="display text-[clamp(2.4rem,5vw,4.4rem)]">
-              Rooted in Mymensingh. <span className="italic">Useful anywhere.</span>
+              Based in Mymensingh, working with clients anywhere
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-7 text-muted">
               <p>

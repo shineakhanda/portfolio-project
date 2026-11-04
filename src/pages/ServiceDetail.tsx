@@ -42,7 +42,7 @@ export function ServiceDetail() {
           title={service.title}
           intro={<p>{service.summary}</p>}
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">Best suited to</p>
               <ul className="mt-4 space-y-3">
                 {service.idealFor.slice(0, 3).map((item) => (
@@ -63,10 +63,10 @@ export function ServiceDetail() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">01 / The approach</p>
+            <p className="eyebrow text-muted">The approach</p>
           </div>
           <div className="lg:col-span-6">
-            <div className="space-y-5 font-serif text-[clamp(1.16rem,1.8vw,1.4rem)] font-normal leading-[1.7] text-ink-soft">
+            <div className="space-y-5 font-sans text-[clamp(1.05rem,1.5vw,1.2rem)] font-normal leading-[1.7] text-ink-soft">
               {service.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -90,12 +90,12 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light py-14 md:py-20">
+      <section className="bg-paper-deep py-14 md:py-20">
         <div className="container-editorial grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow text-muted">02 / What can be included</p>
+            <p className="eyebrow text-muted">What can be included</p>
             <h2 className="display mt-4 text-[clamp(2.4rem,4.6vw,4.3rem)]">
-              A scope shaped around the <span className="italic">actual requirement.</span>
+              Scoped to what you actually need
             </h2>
             <p className="mt-5 max-w-md text-sm leading-7 text-muted">
               Not every item below is necessary for every engagement. The right scope is agreed
@@ -123,7 +123,7 @@ export function ServiceDetail() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">03 / Process</p>
+            <p className="eyebrow text-muted">Process</p>
           </div>
           <div className="lg:col-span-9">
             <div className="grid gap-0 border-t border-line md:grid-cols-4">
@@ -133,7 +133,7 @@ export function ServiceDetail() {
                   className="border-b border-line py-6 md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0"
                 >
                   <span className="eyebrow text-muted">0{index + 1}</span>
-                  <h2 className="mt-7 font-serif text-2xl font-normal tracking-[-0.025em]">
+                  <h2 className="mt-7 font-display text-2xl font-semibold tracking-[-0.025em]">
                     {step.title}
                   </h2>
                   <p className="mt-3 text-xs leading-6 text-muted">{step.body}</p>
@@ -144,7 +144,7 @@ export function ServiceDetail() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light py-12">
+      <section className="bg-paper-deep py-12">
         <div className="container-editorial grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-3">
             <p className="eyebrow text-muted">Tools &amp; technologies</p>
@@ -154,7 +154,7 @@ export function ServiceDetail() {
               {service.technologies.map((technology) => (
                 <li
                   key={technology}
-                  className="border border-line bg-paper px-3 py-2 text-[0.63rem] font-semibold uppercase tracking-[0.1em] text-muted"
+                  className="border border-line bg-paper px-3 py-2 text-[0.8rem] font-semibold text-muted rounded-full"
                 >
                   {technology}
                 </li>
@@ -167,9 +167,9 @@ export function ServiceDetail() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="eyebrow text-muted">04 / Questions</p>
+            <p className="eyebrow text-muted">Questions</p>
             <h2 className="display mt-4 text-[clamp(2.4rem,4.5vw,4rem)]">
-              Straight <span className="italic">answers.</span>
+              Common questions
             </h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
@@ -191,13 +191,13 @@ export function ServiceDetail() {
       </section>
 
       {relatedProjects.length > 0 ? (
-        <section className="border-y border-line bg-paper-light py-14 md:py-20">
+        <section className="bg-paper-deep py-14 md:py-20">
           <div className="container-editorial">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="eyebrow text-muted">Related work</p>
                 <h2 className="display mt-4 text-[clamp(2.2rem,4.5vw,4rem)]">
-                  Selected project <span className="italic">context.</span>
+                  Related work
                 </h2>
               </div>
               <Link to="/projects" className="link-underline eyebrow text-ink">
@@ -207,7 +207,7 @@ export function ServiceDetail() {
             <div className="mt-8 grid gap-8 md:grid-cols-3">
               {relatedProjects.map((project) => (
                 <Link key={project.slug} to={`/projects/${project.slug}`} className="group block">
-                  <div className="overflow-hidden border border-line bg-paper-deep">
+                  <div className="overflow-hidden border border-line bg-paper-deep rounded-3xl">
                     <img
                       src={project.image.src}
                       alt={project.image.alt}
@@ -219,7 +219,7 @@ export function ServiceDetail() {
                     />
                   </div>
                   <p className="eyebrow mt-4 text-muted">{project.category}</p>
-                  <h3 className="mt-2 font-serif text-2xl font-normal tracking-[-0.02em]">{project.title}</h3>
+                  <h3 className="mt-2 font-display text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
                 </Link>
               ))}
             </div>
@@ -243,7 +243,7 @@ export function ServiceDetail() {
                   >
                     <div>
                       <p className="eyebrow text-muted">{post.tags[0] ?? "Journal"}</p>
-                      <h3 className="mt-2 font-serif text-2xl font-normal tracking-[-0.02em] transition-opacity group-hover:opacity-55">
+                      <h3 className="mt-2 font-display text-2xl font-semibold tracking-[-0.02em] transition-opacity group-hover:opacity-55">
                         {post.title}
                       </h3>
                     </div>
@@ -267,7 +267,7 @@ export function ServiceDetail() {
             <div className="md:col-span-8">
               <p className="eyebrow text-muted">Other services</p>
               <h2 className="display mt-4 text-[clamp(2.2rem,4.8vw,4.2rem)]">
-                Need a broader <span className="italic">scope?</span>
+                Need more than one service?
               </h2>
               <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
                 {otherServices.map((item) => (

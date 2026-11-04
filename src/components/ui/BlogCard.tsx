@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { formatPostDate, getCategoryName } from "@/lib/blogMeta";
 import { cn } from "@/lib/utils";
@@ -16,16 +15,17 @@ export function BlogCard({ post, variant = "default", priority = false }: BlogCa
       <article className="group border-t border-line py-5">
         <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-baseline">
           <div>
-            <p className="eyebrow text-muted">
-              {getCategoryName(post.categorySlug)} / {post.readingMinutes} min read
+            <p className="flex flex-wrap gap-x-3 text-[0.82rem] font-semibold text-muted">
+              <span>{getCategoryName(post.categorySlug)}</span>
+              <span>{post.readingMinutes} min read</span>
             </p>
-            <h3 className="mt-2 max-w-xl font-serif text-2xl font-normal leading-tight tracking-[-0.02em]">
-              <Link to={`/blog/${post.slug}`} className="transition-opacity hover:opacity-55">
+            <h3 className="mt-2 max-w-xl font-display text-[1.45rem] font-semibold leading-tight tracking-[-0.02em]">
+              <Link to={`/blog/${post.slug}`} className="transition-colors hover:text-muted">
                 {post.title}
               </Link>
             </h3>
           </div>
-          <span className="eyebrow text-muted">{formatPostDate(post.date)}</span>
+          <span className="text-[0.82rem] text-muted">{formatPostDate(post.date)}</span>
         </div>
       </article>
     );
@@ -40,7 +40,7 @@ export function BlogCard({ post, variant = "default", priority = false }: BlogCa
     >
       <Link
         to={`/blog/${post.slug}`}
-        className="block overflow-hidden border border-line bg-paper-deep"
+        className="block overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-deep"
         aria-label={`Read ${post.title}`}
       >
         <img
@@ -58,30 +58,29 @@ export function BlogCard({ post, variant = "default", priority = false }: BlogCa
         />
       </Link>
       <div className="flex flex-1 flex-col pt-5">
-        <p className="eyebrow text-muted">
-          {getCategoryName(post.categorySlug)}
-          <span className="mx-2">/</span>
-          {post.readingMinutes} min read
+        <p className="flex flex-wrap items-center gap-2">
+          <span className="chip bg-butter">{getCategoryName(post.categorySlug)}</span>
+          <span className="text-[0.82rem] font-semibold text-muted">{post.readingMinutes} min read</span>
         </p>
         <h3
           className={cn(
-            "mt-3 font-serif font-normal leading-[1.08] tracking-[-0.03em]",
+            "mt-3 font-display font-semibold leading-[1.08] tracking-[-0.03em]",
             variant === "featured" ? "text-[clamp(2rem,4vw,3.4rem)]" : "text-[clamp(1.55rem,2.4vw,2.2rem)]",
           )}
         >
-          <Link to={`/blog/${post.slug}`} className="transition-opacity hover:opacity-55">
+          <Link to={`/blog/${post.slug}`} className="transition-colors hover:text-muted">
             {post.title}
           </Link>
         </h3>
         <p className="mt-4 max-w-xl text-sm leading-7 text-muted">{post.excerpt}</p>
         <div className="mt-auto flex items-center justify-between gap-4 pt-6">
-          <span className="eyebrow text-muted">{formatPostDate(post.date)}</span>
+          <span className="text-[0.82rem] text-muted">{formatPostDate(post.date)}</span>
           <Link
             to={`/blog/${post.slug}`}
-            className="link-underline eyebrow text-ink"
+            className="link-underline text-sm font-semibold text-ink"
             aria-label={`Read ${post.title}`}
           >
-            Read <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
+            Read article
           </Link>
         </div>
       </div>

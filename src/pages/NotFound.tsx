@@ -14,11 +14,11 @@ export function NotFound() {
     <section className="container-editorial py-16 md:py-24">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-7">
-          <p className="eyebrow text-muted">Error 404 / Page not found</p>
+          <p className="eyebrow text-muted">Page not found</p>
           <h1 className="display mt-5 text-[clamp(5rem,16vw,14rem)] leading-[0.8]">
             404
           </h1>
-          <h2 className="mt-8 max-w-xl font-serif text-[clamp(2rem,4vw,3.4rem)] font-light leading-[1.08] tracking-[-0.03em]">
+          <h2 className="mt-8 max-w-xl font-display text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.03em]">
             This page has moved, changed its name, or never existed.
           </h2>
           <p className="mt-5 max-w-md text-sm leading-7 text-muted">

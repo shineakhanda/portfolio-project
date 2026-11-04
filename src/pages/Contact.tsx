@@ -143,10 +143,10 @@ export function Contact() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Contact / Direct line"
+          eyebrow="Contact"
           title={
             <>
-              Tell me what you&rsquo;re trying to <span className="italic text-muted">build.</span>
+              Tell me what you&rsquo;re working on
             </>
           }
           intro={
@@ -157,7 +157,7 @@ export function Contact() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <a
                 href={SITE.phone.href}
                 className="group flex items-start gap-3 transition-opacity hover:opacity-60"
@@ -165,7 +165,7 @@ export function Contact() {
                 <Phone size={16} strokeWidth={1.5} className="mt-1 text-muted" aria-hidden="true" />
                 <span>
                   <span className="eyebrow block text-muted">Telephone</span>
-                  <span className="mt-1 block font-serif text-2xl">{SITE.phone.display}</span>
+                  <span className="mt-1 block font-display text-2xl">{SITE.phone.display}</span>
                 </span>
               </a>
               <a
@@ -175,7 +175,7 @@ export function Contact() {
                 <Mail size={16} strokeWidth={1.5} className="mt-1 text-muted" aria-hidden="true" />
                 <span>
                   <span className="eyebrow block text-muted">Email</span>
-                  <span className="mt-1 block break-all font-serif text-2xl">{SITE.email.display}</span>
+                  <span className="mt-1 block break-all font-display text-2xl">{SITE.email.display}</span>
                 </span>
               </a>
               <div className="mt-5 flex items-start gap-3 border-t border-line pt-4">
@@ -195,7 +195,7 @@ export function Contact() {
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <h2 className="display text-[clamp(2.2rem,4vw,3.4rem)]">
-                A short, useful <span className="italic">message.</span>
+                What helps me reply quickly
               </h2>
               <p className="mt-5 text-sm leading-7 text-muted">
                 Include what the business does, what needs to change, and any deadline or constraint
@@ -223,7 +223,7 @@ export function Contact() {
                 <SocialLinks className="mt-3" />
               </div>
 
-              <p className="mt-7 border-t border-line pt-4 text-[0.65rem] leading-5 text-muted">
+              <p className="mt-7 border-t border-line pt-4 text-[0.8rem] leading-5 text-muted">
                 For privacy questions, email{" "}
                 <a href={SITE.email.href} className="text-ink underline underline-offset-2">
                   {SITE.email.display}
@@ -238,11 +238,11 @@ export function Contact() {
               <div className="flex items-start justify-between gap-5 border-b border-line pb-5">
                 <div>
                   <p className="eyebrow text-muted">Project enquiry</p>
-                  <h2 className="mt-3 font-serif text-3xl font-normal tracking-[-0.025em]">
+                  <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.025em]">
                     Start a conversation
                   </h2>
                 </div>
-                <span className="text-[0.58rem] uppercase tracking-[0.13em] text-muted">Required *</span>
+                <span className="text-[0.8rem] text-muted">Required *</span>
               </div>
 
               {status === "success" ? (
@@ -405,7 +405,7 @@ export function Contact() {
                     maxLength={5000}
                     required
                   />
-                  <div className="mt-1.5 flex justify-between gap-4 text-[0.65rem] text-muted">
+                  <div className="mt-1.5 flex justify-between gap-4 text-[0.8rem] text-muted">
                     {errors.message ? (
                       <p id="message-error" className="font-medium text-ink">
                         {errors.message}
@@ -460,7 +460,7 @@ export function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
-                  <p className="max-w-xs text-[0.65rem] leading-5 text-muted">
+                  <p className="max-w-xs text-[0.8rem] leading-5 text-muted">
                     This form is handled by a Hono API on Cloudflare. If delivery is unavailable,
                     the form will show an error and email or phone remains available.
                   </p>

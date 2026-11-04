@@ -61,7 +61,7 @@ export function BlogPost() {
                   </Link>
                 ) : null}
                 <span className="hidden h-3 w-px bg-line sm:block" aria-hidden="true" />
-                <span className="flex items-center gap-1.5 text-[0.63rem] uppercase tracking-[0.12em] text-muted">
+                <span className="flex items-center gap-1.5 text-[0.8rem] text-muted">
                   <Clock3 size={12} strokeWidth={1.5} aria-hidden="true" />
                   {post.readingMinutes} min read
                 </span>
@@ -70,7 +70,7 @@ export function BlogPost() {
               <p className="mt-6 max-w-2xl text-base leading-8 text-muted">{post.excerpt}</p>
             </div>
             <div className="lg:col-span-3">
-              <div className="border-t border-ink pt-4 text-xs">
+              <div className="rounded-[var(--radius-soft)] bg-sky p-5 text-sm">
                 <div className="flex justify-between gap-4 border-b border-line pb-3">
                   <span className="text-muted">Author</span>
                   <span>{SITE.name}</span>
@@ -91,7 +91,7 @@ export function BlogPost() {
         </header>
 
         <figure className="container-editorial">
-          <div className="overflow-hidden border border-line bg-paper-deep">
+          <div className="overflow-hidden border border-line bg-paper-deep rounded-3xl">
             <img
               src={post.cover}
               alt={post.coverAlt}
@@ -102,7 +102,7 @@ export function BlogPost() {
               className="aspect-[16/8] w-full object-cover"
             />
           </div>
-          <figcaption className="mt-3 flex items-center justify-between gap-4 border-t border-line pt-3 text-[0.62rem] uppercase tracking-[0.12em] text-muted">
+          <figcaption className="mt-3 flex items-center justify-between gap-4 border-t border-line pt-3 text-[0.8rem] text-muted">
             <span>Shine Akhanda / Journal</span>
             <span>{category?.name}</span>
           </figcaption>
@@ -145,7 +145,7 @@ export function BlogPost() {
                   {category ? (
                     <Link
                       to={`/blog/categories/${category.slug}`}
-                      className="border border-ink bg-ink px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-paper"
+                      className="border border-ink bg-ink px-3 py-1.5 text-[0.8rem] font-semibold text-paper rounded-full"
                     >
                       {category.name}
                     </Link>
@@ -154,7 +154,7 @@ export function BlogPost() {
                     <Link
                       key={tag}
                       to={`/blog/tags/${slugifyTag(tag)}`}
-                      className="border border-line px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-muted transition-colors hover:border-ink hover:text-ink"
+                      className="border border-line px-3 py-1.5 text-[0.8rem] font-semibold text-muted transition-colors hover:border-ink hover:text-ink rounded-full"
                     >
                       {tag}
                     </Link>
@@ -217,7 +217,7 @@ export function BlogPost() {
                   </ol>
                   <div className="mt-8 border-t border-line pt-5">
                     <p className="eyebrow text-muted">Author</p>
-                    <p className="mt-2 font-serif text-xl">Shine Akhanda</p>
+                    <p className="mt-2 font-display text-xl">Shine Akhanda</p>
                     <p className="mt-1 text-xs leading-5 text-muted">
                       Web developer and digital marketing professional in Mymensingh, Bangladesh.
                     </p>
@@ -229,7 +229,7 @@ export function BlogPost() {
               ) : (
                 <div className="hidden border-t border-line pt-4 lg:block">
                   <p className="eyebrow text-muted">Author</p>
-                  <p className="mt-2 font-serif text-xl">Shine Akhanda</p>
+                  <p className="mt-2 font-display text-xl">Shine Akhanda</p>
                   <Link to="/about" className="link-underline eyebrow mt-3 text-ink">
                     About
                   </Link>
@@ -239,13 +239,13 @@ export function BlogPost() {
           </div>
         </section>
 
-        <section className="border-y border-line bg-paper-light py-12 md:py-16">
+        <section className="bg-paper-deep py-12 md:py-16">
           <div className="container-editorial">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <p className="eyebrow text-muted">Continue reading</p>
                 <h2 className="display mt-3 text-[clamp(2.1rem,4.2vw,3.8rem)]">
-                  Related <span className="italic">notes.</span>
+                  Keep reading
                 </h2>
               </div>
               <ButtonLink href="/blog" variant="outline">
@@ -270,7 +270,7 @@ export function BlogPost() {
                 <span className="eyebrow flex items-center gap-2 text-muted">
                   <ArrowLeft size={12} strokeWidth={1.5} aria-hidden="true" /> Previous article
                 </span>
-                <span className="mt-5 block font-serif text-2xl leading-tight transition-opacity group-hover:opacity-55">
+                <span className="mt-5 block font-display text-2xl leading-tight transition-opacity group-hover:opacity-55">
                   {previous.title}
                 </span>
               </Link>
@@ -285,7 +285,7 @@ export function BlogPost() {
                 <span className="eyebrow flex items-center justify-end gap-2 text-muted">
                   Next article <ArrowRight size={12} strokeWidth={1.5} aria-hidden="true" />
                 </span>
-                <span className="mt-5 block font-serif text-2xl leading-tight transition-opacity group-hover:opacity-55">
+                <span className="mt-5 block font-display text-2xl leading-tight transition-opacity group-hover:opacity-55">
                   {next.title}
                 </span>
               </Link>

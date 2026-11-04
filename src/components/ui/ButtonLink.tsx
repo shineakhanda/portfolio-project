@@ -21,21 +21,30 @@ export function ButtonLink({
   icon,
 }: ButtonLinkProps) {
   const isExternal = external ?? /^(https?:|mailto:|tel:)/.test(href);
+  const opensNewTab = isExternal && /^https?:/.test(href);
   const classes = cn(
     variant === "primary" ? "button-primary" : variant === "inverse" ? "button-inverse" : "button-outline",
     className,
   );
 
+  // Only links that leave the site get an icon, so the arrow means something.
+  const trailing = icon ?? (opensNewTab ? <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /> : null);
+
   const content = (
     <>
       <span>{children}</span>
-      {icon ?? <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />}
+      {trailing}
     </>
   );
 
   if (isExternal) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+      <a
+        href={href}
+        target={opensNewTab ? "_blank" : undefined}
+        rel={opensNewTab ? "noopener noreferrer" : undefined}
+        className={classes}
+      >
         {content}
       </a>
     );

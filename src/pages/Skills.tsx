@@ -14,10 +14,10 @@ export function Skills() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Capabilities / Technology"
+          eyebrow="Skills"
           title={
             <>
-              Built with the right tools, <span className="italic text-muted">not the loudest ones.</span>
+              The tools I use, and why I chose them
             </>
           }
           intro={
@@ -28,7 +28,7 @@ export function Skills() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">Explore</p>
               <ul className="mt-4 space-y-2">
                 {SKILL_CATEGORIES.map((category) => (
@@ -38,7 +38,7 @@ export function Skills() {
                       className="flex items-center justify-between gap-3 border-b border-line pb-2 text-xs text-muted transition-colors hover:text-ink"
                     >
                       <span>{category.title}</span>
-                      <span className="text-[0.6rem] uppercase tracking-[0.1em]">
+                      <span className="text-[0.8rem]">
                         {category.items.length}
                       </span>
                     </a>
@@ -74,7 +74,7 @@ export function Skills() {
                         <span className="flex h-10 w-10 items-center justify-center border border-line bg-paper-light text-ink transition-colors group-hover:border-ink">
                           <BrandIcon name={item.icon} size={20} />
                         </span>
-                        <span className="text-[0.55rem] uppercase tracking-[0.12em] text-muted">
+                        <span className="text-[0.8rem] text-muted">
                           {category.label.split(" — ")[0]}
                         </span>
                       </div>
@@ -89,12 +89,12 @@ export function Skills() {
         ))}
       </div>
 
-      <section className="border-y border-line bg-paper-light py-14 md:py-20">
+      <section className="bg-paper-deep py-14 md:py-20">
         <div className="container-editorial grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow text-muted">The full picture</p>
             <h2 className="display mt-4 text-[clamp(2.3rem,4.6vw,4.2rem)]">
-              Software skill is only half of a reliable <span className="italic">website.</span>
+              Good code is only half of a reliable website
             </h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
@@ -139,7 +139,7 @@ export function Skills() {
           <div className="md:col-span-8">
             <p className="eyebrow text-muted">Next step</p>
             <h2 className="display mt-4 text-[clamp(2.6rem,6vw,5.2rem)]">
-              Need the right stack for a real <span className="italic">business problem?</span>
+              Not sure which stack fits your project?
             </h2>
           </div>
           <div className="flex flex-wrap gap-3 md:col-span-4 md:justify-end">

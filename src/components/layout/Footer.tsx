@@ -1,65 +1,63 @@
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FOOTER_NAV } from "@/data/navigation";
 import { SITE } from "@/data/site";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { StrataMark } from "@/components/layout/Header";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line-dark bg-charcoal text-paper">
+    <footer className="mt-8 bg-apricot text-ink">
       <div className="container-editorial py-14 md:py-20">
-        <div className="grid gap-10 border-b border-line-dark pb-14 lg:grid-cols-12">
+        <div className="grid gap-10 pb-12 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <p className="eyebrow text-paper/60">A working portfolio</p>
-            <Link
-              to="/contact"
-              className="group mt-6 block max-w-3xl font-serif text-[clamp(2.6rem,7vw,6.2rem)] font-light leading-[0.95] tracking-[-0.045em]"
-            >
-              Let&apos;s build something
-              <span className="italic"> that lasts.</span>
-              <ArrowUpRight
-                className="ml-3 inline-block align-top transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                size={30}
-                strokeWidth={1}
-                aria-hidden="true"
-              />
-            </Link>
-          </div>
-          <div className="lg:col-span-5 lg:pl-12">
-            <p className="max-w-md text-sm leading-7 text-paper/65">
-              Web development is my profession; system administration is my passion. Based in
-              Mymensingh, working with businesses throughout Bangladesh and beyond.
-            </p>
-            <div className="mt-7 flex flex-col items-start gap-3">
-              <a
-                href={SITE.phone.href}
-                className="inline-flex items-center gap-3 border-b border-paper/25 pb-2 font-serif text-2xl text-paper transition-colors hover:border-paper"
-              >
-                <Phone size={16} strokeWidth={1.4} aria-hidden="true" />
-                {SITE.phone.display}
-              </a>
-              <a
-                href={SITE.email.href}
-                className="inline-flex break-all items-center gap-3 border-b border-paper/25 pb-2 font-serif text-xl text-paper transition-colors hover:border-paper"
-              >
-                <Mail size={16} strokeWidth={1.4} aria-hidden="true" />
-                {SITE.email.display}
+            <h2 className="display max-w-2xl text-[clamp(2.4rem,6vw,4.8rem)]">
+              Got a website, a campaign or a server that needs attention?
+            </h2>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/contact" className="button-primary">
+                Tell me about it
+              </Link>
+              <a href={SITE.phone.href} className="button-outline hover:bg-butter">
+                <Phone size={16} strokeWidth={1.8} aria-hidden="true" />
+                Call {SITE.phone.display}
               </a>
             </div>
           </div>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <p className="max-w-sm text-base leading-7 text-ink-soft">
+              I usually reply within a day, in English or Bangla, whichever is easier for you.
+            </p>
+            <a
+              href={SITE.email.href}
+              className="link-underline mt-4 inline-flex items-center gap-2 break-all text-lg font-semibold"
+            >
+              <Mail size={17} strokeWidth={1.8} aria-hidden="true" />
+              {SITE.email.display}
+            </a>
+          </div>
         </div>
 
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="grid gap-10 rounded-[var(--radius-card)] bg-paper p-7 sm:grid-cols-2 md:p-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <StrataMark className="h-8 w-8 text-ink" />
+              <span className="font-display text-xl font-bold tracking-[-0.03em]">Shine Akhanda</span>
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-muted">
+              Web developer, digital marketer and Linux admin in {SITE.location.display}. Founder of{" "}
+              {SITE.company.name}.
+            </p>
+            <SocialLinks className="mt-5" />
+          </div>
+
           {FOOTER_NAV.map((group) => (
             <nav key={group.title} aria-label={group.title} className="lg:col-span-2">
-              <p className="eyebrow text-paper/60">{group.title}</p>
-              <ul className="mt-4 space-y-2.5">
+              <p className="text-sm font-bold">{group.title}</p>
+              <ul className="mt-3 space-y-2">
                 {group.items.map((item) => (
                   <li key={item.href}>
-                    <Link
-                      to={item.href}
-                      className="text-[0.8rem] text-paper/65 transition-colors hover:text-paper"
-                    >
+                    <Link to={item.href} className="text-sm text-muted transition-colors hover:text-ink">
                       {item.label}
                     </Link>
                   </li>
@@ -67,31 +65,15 @@ export function Footer() {
               </ul>
             </nav>
           ))}
-
-          <div className="lg:col-span-3 lg:col-start-10">
-            <p className="eyebrow text-paper/60">Elsewhere</p>
-            <p className="mt-4 text-sm leading-6 text-paper/65">
-              Follow the work, experiments, and occasional infrastructure notes.
-            </p>
-            <SocialLinks tone="dark" className="mt-5" />
-          </div>
         </div>
 
-        <div className="flex flex-col gap-5 border-t border-line-dark pt-6 text-[0.65rem] uppercase tracking-[0.12em] text-paper/60 md:flex-row md:items-center md:justify-between">
-          <p>© {SITE.currentYear} Shine Akhanda. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <span>Founder &amp; CEO, Cave Technologies</span>
-            <Link to="/privacy" className="transition-colors hover:text-paper">
-              Privacy
-            </Link>
-            <span>Mymensingh, Bangladesh</span>
-          </div>
+        <div className="mt-8 flex flex-col gap-3 text-sm text-ink-soft md:flex-row md:items-start md:justify-between">
+          <p>© {SITE.currentYear} Shine Akhanda</p>
+          <p className="max-w-2xl text-[0.8rem] leading-5 text-ink-soft md:text-right">
+            Personal portfolio. Cave Technologies is a separate agency. Client screenshots are shown
+            for reference and belong to their owners.
+          </p>
         </div>
-        <p className="mt-5 max-w-3xl text-[0.65rem] leading-5 text-paper/55">
-          This is the independent professional portfolio of Shine Akhanda. Cave Technologies is a
-          separate agency venture. Project screenshots are shown for portfolio reference and remain
-          the property of their respective owners.
-        </p>
       </div>
     </footer>
   );

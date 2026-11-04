@@ -36,3 +36,6 @@
 /api/*
   Cache-Control: no-store
   X-Robots-Tag: noindex
+
+/fonts/*
+  Cache-Control: public, max-age=2592000

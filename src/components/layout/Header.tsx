@@ -6,14 +6,27 @@ import { SITE } from "@/data/site";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { cn } from "@/lib/utils";
 
+export function StrataMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true" focusable="false">
+      <rect x="2" y="4" width="22" height="8" rx="4" fill="var(--color-sky)" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="5" y="12" width="22" height="8" rx="4" fill="var(--color-butter)" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="8" y="20" width="22" height="8" rx="4" fill="var(--color-apricot)" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
 function BrandMark() {
   return (
-    <Link to="/" className="group flex flex-col">
-      <span className="font-serif text-[1.45rem] font-medium leading-none tracking-[-0.04em] md:text-[1.65rem]">
-        Shine Akhanda
-      </span>
-      <span className="mt-1.5 text-[0.56rem] font-semibold uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-ink">
-        Web developer / Digital marketer
+    <Link to="/" className="group flex items-center gap-2.5">
+      <StrataMark className="h-8 w-8 text-ink transition-transform duration-300 group-hover:-rotate-6" />
+      <span className="flex flex-col">
+        <span className="font-display text-[1.3rem] font-bold leading-none tracking-[-0.03em] md:text-[1.4rem]">
+          Shine Akhanda
+        </span>
+        <span className="mt-1 hidden text-[0.75rem] font-medium leading-none text-muted sm:block">
+          Websites, growth &amp; servers
+        </span>
       </span>
       <span className="sr-only"> — Home</span>
     </Link>
@@ -81,30 +94,23 @@ export function Header() {
     href === "/" ? location.pathname === "/" : location.pathname === href || location.pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/95">
-      <div className="container-editorial flex h-[72px] items-center justify-between gap-6 md:h-[84px]">
+    <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur-md">
+      <div className="container-editorial flex h-[68px] items-center justify-between gap-6 md:h-[76px]">
         <BrandMark />
 
         <nav aria-label="Primary navigation" className="hidden lg:block">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-1">
             {MAIN_NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   to={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
-                    "group relative py-2 text-[0.62rem] font-semibold uppercase tracking-[0.15em] transition-colors",
-                    isActive(item.href) ? "text-ink" : "text-muted hover:text-ink",
+                    "rounded-full px-3.5 py-2 text-[0.9rem] font-semibold transition-colors",
+                    isActive(item.href) ? "bg-butter text-ink" : "text-muted hover:bg-paper-deep hover:text-ink",
                   )}
                 >
                   {item.label}
-                  <span
-                    className={cn(
-                      "absolute inset-x-0 -bottom-0.5 h-px origin-left bg-ink transition-transform duration-300",
-                      isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
-                    )}
-                    aria-hidden="true"
-                  />
                 </Link>
               </li>
             ))}
@@ -114,7 +120,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <a
             href={SITE.phone.href}
-            className="hidden items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-muted transition-colors hover:text-ink xl:flex"
+            className="hidden items-center gap-2 text-[0.85rem] font-semibold text-muted transition-colors hover:text-ink xl:flex"
             aria-label={`Call Shine Akhanda at ${SITE.phone.display}`}
           >
             <Phone size={13} strokeWidth={1.6} aria-hidden="true" />
@@ -122,14 +128,14 @@ export function Header() {
           </a>
           <Link
             to="/contact"
-            className="hidden border border-ink bg-ink px-4 py-2.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors hover:bg-transparent hover:text-ink sm:inline-flex"
+            className="hidden rounded-full border-[1.5px] border-ink bg-ink px-4 py-2.5 text-[0.88rem] font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink sm:inline-flex"
           >
             Start a project
           </Link>
           <button
             ref={menuButtonRef}
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center border border-line text-ink transition-colors hover:border-ink lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink hover:bg-sky lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? "Close navigation" : "Open navigation"}
@@ -144,7 +150,7 @@ export function Header() {
         <div
           ref={menuRef}
           id="mobile-navigation"
-          className="mobile-menu-enter fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto border-t border-line bg-paper md:top-[84px] lg:hidden"
+          className="mobile-menu-enter fixed inset-x-0 bottom-0 top-[68px] z-40 overflow-y-auto border-t border-line bg-paper md:top-[76px] lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
@@ -152,17 +158,19 @@ export function Header() {
             <div className="container-editorial flex min-h-full flex-col py-8">
               <nav aria-label="Mobile navigation">
                 <ul className="divide-y divide-line border-b border-line">
-                  {MAIN_NAV.map((item, index) => (
+                  {MAIN_NAV.map((item) => (
                     <li key={item.href}>
                       <Link
                         to={item.href}
                         className="group flex items-baseline justify-between gap-4 py-5"
                         aria-current={isActive(item.href) ? "page" : undefined}
                       >
-                        <span className="display text-[clamp(2rem,8vw,3.4rem)] group-hover:opacity-55">
+                        <span className="display text-[clamp(2rem,8vw,3.4rem)] transition-colors group-hover:text-muted">
                           {item.label}
                         </span>
-                        <span className="eyebrow text-muted">0{index + 1}</span>
+                        {item.description ? (
+                          <span className="text-sm text-muted">{item.description}</span>
+                        ) : null}
                       </Link>
                     </li>
                   ))}
@@ -171,17 +179,17 @@ export function Header() {
 
               <div className="mt-auto grid gap-8 pt-10 sm:grid-cols-2">
                 <div>
-                  <p className="eyebrow text-muted">Direct</p>
-                  <a href={SITE.phone.href} className="mt-3 block font-serif text-2xl">
+                  <p className="eyebrow text-muted">Talk directly</p>
+                  <a href={SITE.phone.href} className="mt-3 block font-display text-2xl">
                     {SITE.phone.display}
                   </a>
-                  <a href={SITE.email.href} className="mt-1 block break-all font-serif text-lg">
+                  <a href={SITE.email.href} className="mt-1 block break-all font-display text-lg">
                     {SITE.email.display}
                   </a>
                   <p className="mt-1 text-sm text-muted">{SITE.location.display}</p>
                 </div>
                 <div>
-                  <p className="eyebrow text-muted">Profiles</p>
+                  <p className="eyebrow text-muted">Find me online</p>
                   <SocialLinks className="mt-3" />
                 </div>
               </div>

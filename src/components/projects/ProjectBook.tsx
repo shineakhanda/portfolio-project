@@ -63,7 +63,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
               <p className="eyebrow text-muted">
                 Project {project.index} / {String(total).padStart(2, "0")}
               </p>
-              <p className="text-right text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted">
+              <p className="text-right text-[0.8rem] font-semibold text-muted">
                 {project.category}
               </p>
             </div>
@@ -71,7 +71,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
             <div className="my-auto py-9 lg:py-6">
               <h2
                 id={`project-title-${project.slug}`}
-                className="font-serif text-[clamp(2.8rem,5.4vw,5.8rem)] font-light leading-[0.92] tracking-[-0.045em]"
+                className="font-display text-[clamp(2.8rem,5.4vw,5.8rem)] font-semibold leading-[0.92] tracking-[-0.045em]"
               >
                 {project.title}
               </h2>
@@ -81,7 +81,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
                 {project.stack.map((technology) => (
                   <li
                     key={technology}
-                    className="border border-line px-2 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-muted"
+                    className="border border-line px-2 py-1 text-[0.8rem] font-semibold text-muted rounded-full"
                   >
                     {technology}
                   </li>
@@ -91,7 +91,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
               <div className="mt-8 flex flex-wrap gap-2">
                 <Link
                   to={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors hover:bg-transparent hover:text-ink"
+                  className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2.5 text-[0.8rem] font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink rounded-full"
                 >
                   Read case study
                 </Link>
@@ -99,7 +99,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
                   href={project.externalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-line px-4 py-2.5 text-[0.62rem] font-semibold uppercase tracking-[0.12em] transition-colors hover:border-ink"
+                  className="inline-flex items-center gap-2 border border-line px-4 py-2.5 text-[0.8rem] font-semibold transition-colors hover:border-ink rounded-full"
                 >
                   Live site <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
                 </a>
@@ -107,10 +107,10 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
             </div>
 
             <div className="flex items-center justify-between border-t border-line pt-3">
-              <span className="text-[0.58rem] uppercase tracking-[0.14em] text-muted">
+              <span className="text-[0.8rem] text-muted">
                 {project.projectType}
               </span>
-              <span className="flex items-center gap-2 text-[0.58rem] uppercase tracking-[0.14em] text-muted">
+              <span className="flex items-center gap-2 text-[0.8rem] text-muted">
                 {isLast ? "End of selection" : "Continue"}
                 {isLast ? null : <ArrowDown size={12} strokeWidth={1.5} aria-hidden="true" />}
               </span>
@@ -132,9 +132,9 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
               height={project.image.height}
               loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
-              className="h-full w-full object-cover grayscale transition-[filter,transform] duration-700 hover:scale-[1.015] hover:grayscale-0 lg:absolute lg:inset-0"
+              className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.015] lg:absolute lg:inset-0"
             />
-            <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-3 border-t border-white/20 bg-black/55 px-4 py-2.5 text-[0.58rem] uppercase tracking-[0.12em] text-white/70 backdrop-blur-[2px]">
+            <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-3 border-t border-white/20 bg-black/55 px-4 py-2.5 text-[0.8rem] text-white/70 backdrop-blur-[2px]">
               <span>{project.title}</span>
               <span>{project.projectType}</span>
             </figcaption>

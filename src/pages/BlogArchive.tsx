@@ -39,7 +39,7 @@ export function BlogArchive() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow={isTagArchive ? "Journal / Tag archive" : "Journal / Category"}
+          eyebrow={isTagArchive ? "Journal tag" : "Journal topic"}
           title={
             <>
               {name}
@@ -47,9 +47,9 @@ export function BlogArchive() {
           }
           intro={<p>{description}</p>}
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">In this archive</p>
-              <p className="mt-4 font-serif text-4xl font-light">{posts.length}</p>
+              <p className="mt-4 font-display text-4xl font-semibold">{posts.length}</p>
               <p className="mt-1 text-xs text-muted">
                 {posts.length === 1 ? "article" : "articles"}
               </p>
@@ -69,7 +69,7 @@ export function BlogArchive() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light py-12">
+      <section className="bg-paper-deep py-12">
         <div className="container-editorial">
           <div className="grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-3">
@@ -81,9 +81,9 @@ export function BlogArchive() {
                     <Link
                       key={tag.slug}
                       to={`/blog/tags/${tag.slug}`}
-                      className={`border px-2.5 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                      className={`rounded-full border px-3 py-1.5 text-[0.82rem] font-semibold transition-colors ${
                         tag.slug === slug
-                          ? "border-ink bg-ink text-paper"
+                          ? "border-ink bg-butter text-ink"
                           : "border-line text-muted hover:border-ink hover:text-ink"
                       }`}
                     >
@@ -94,9 +94,9 @@ export function BlogArchive() {
                     <Link
                       key={item.slug}
                       to={`/blog/categories/${item.slug}`}
-                      className={`border px-2.5 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                      className={`rounded-full border px-3 py-1.5 text-[0.82rem] font-semibold transition-colors ${
                         item.slug === slug
-                          ? "border-ink bg-ink text-paper"
+                          ? "border-ink bg-butter text-ink"
                           : "border-line text-muted hover:border-ink hover:text-ink"
                       }`}
                     >

@@ -242,11 +242,7 @@ async function main() {
 
   const template = await readFile(templatePath, "utf8");
   const assetFiles = await readdir(path.join(distDir, "assets"));
-  const criticalFonts = [
-    "newsreader-latin-wght-normal-",
-    "newsreader-latin-wght-italic-",
-    "manrope-latin-wght-normal-",
-  ]
+  const criticalFonts = ["manrope-latin-wght-normal-"]
     .map((prefix) => assetFiles.find((file) => file.startsWith(prefix) && file.endsWith(".woff2")))
     .filter(Boolean);
 
@@ -254,6 +250,9 @@ async function main() {
     .map(
       (file) =>
         `<link rel="preload" href="/assets/${file}" as="font" type="font/woff2" crossorigin />`,
+    )
+    .concat(
+      '<link rel="preload" href="/fonts/bricolage-grotesque.woff" as="font" type="font/woff" crossorigin />',
     )
     .join("\n    ");
 

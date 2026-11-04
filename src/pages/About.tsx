@@ -15,23 +15,22 @@ export function About() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="About / Shine Akhanda"
+          eyebrow="About"
           title={
             <>
-              A builder of websites, businesses, and the systems{" "}
-              <span className="italic text-muted">behind them.</span>
+              I build websites, help businesses grow, and keep their servers running.
             </>
           }
           intro={
             <p>
-              I&rsquo;m a web developer and digital marketing professional in Mymensingh, Bangladesh.
-              I founded Cave Technologies to help businesses establish a digital presence that is
-              useful, credible, and built to grow.
+              I&rsquo;m Shine, a web developer and digital marketer in Mymensingh, Bangladesh. I
+              founded Cave Technologies to help businesses get online properly: a site people trust,
+              a way for customers to find it, and a server that doesn&rsquo;t fall over.
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
-              <p className="eyebrow text-muted">At a glance</p>
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
+              <p className="font-display text-lg font-bold">At a glance</p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex justify-between gap-4 border-b border-line pb-3">
                   <dt className="text-muted">Based in</dt>
@@ -58,26 +57,24 @@ export function About() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">01 / The short version</p>
+            <p className="eyebrow text-muted">The short version</p>
           </div>
           <div className="lg:col-span-6">
-            <div className="space-y-6 font-serif text-[clamp(1.08rem,1.6vw,1.3rem)] font-normal leading-[1.75] text-ink-soft">
-              <p className="first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[4.6rem] first-letter:font-light first-letter:leading-[0.72]">
-                My work began where most web work begins: with a business that needed a better way
-                to be found, understood, and trusted online. Over time, that work expanded from
-                building interfaces into shaping the strategy around them and taking responsibility
-                for the infrastructure underneath.
+            <div className="space-y-6 font-sans text-[clamp(1.05rem,1.5vw,1.2rem)] font-normal leading-[1.7] text-ink-soft">
+              <p>
+                I started the way most web developers do: a business needed to be found, understood
+                and trusted online, and I built the site. Over time the job grew. I began planning
+                the marketing around those sites, and then looking after the servers underneath them.
               </p>
               <p>
-                Today I lead Cave Technologies, a business-building agency focused on websites,
-                digital marketing, online advertising, and digital growth. I also continue to work
-                directly on client projects — from frontend implementation and SEO foundations to
-                server setup and recovery.
+                Today I run Cave Technologies, an agency for websites, digital marketing and online
+                advertising. I still work hands-on with clients, from frontend code and SEO
+                foundations to server setup and recovery.
               </p>
               <p>
-                That combination is deliberate. A website is not only a visual artifact. It is a
-                business asset that has to answer customer questions, survive real traffic, stay
-                maintainable, and support the next stage of growth.
+                Doing all three is on purpose. A website isn&rsquo;t just something to look at. It has
+                to answer customer questions, handle real traffic, stay easy to update, and keep up
+                as the business grows.
               </p>
             </div>
           </div>
@@ -90,25 +87,24 @@ export function About() {
                 height={SITE.portrait.height}
                 loading="lazy"
                 decoding="async"
-                className="aspect-square w-full rounded-full border border-line object-cover object-center"
+                className="aspect-square w-full rounded-full border-[1.5px] border-ink bg-butter object-cover object-center"
               />
-              <figcaption className="mt-3 border-t border-line pt-3 text-[0.65rem] leading-5 text-muted">
-                Shine Akhanda, Mymensingh. Web development is the profession; Linux and bare-metal
-                systems are the persistent interest.
+              <figcaption className="mt-3 border-t border-line pt-3 text-[0.8rem] leading-5 text-muted">
+                Web development is my profession; system administration is my passion.
               </figcaption>
             </figure>
           </aside>
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light py-14 md:py-20">
+      <section className="bg-paper-deep py-14 md:py-20">
         <div className="container-editorial grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">02 / The practice</p>
+            <p className="eyebrow text-muted">The practice</p>
           </div>
           <div className="lg:col-span-8 lg:col-start-5">
             <h2 className="display text-[clamp(2.5rem,5vw,4.8rem)]">
-              I care about the whole route from <span className="italic">attention to action.</span>
+              From the first visit to the first enquiry
             </h2>
             <div className="mt-8 grid gap-8 sm:grid-cols-2">
               <div>
@@ -151,11 +147,11 @@ export function About() {
       <section id="cave-technologies" className="container-editorial scroll-mt-28 py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">03 / The company</p>
+            <p className="eyebrow text-muted">The company</p>
           </div>
           <div className="lg:col-span-5">
             <h2 className="display text-[clamp(2.5rem,5vw,4.8rem)]">
-              Cave <span className="italic">Technologies.</span>
+              Cave Technologies.
             </h2>
             <p className="mt-5 text-sm leading-7 text-muted">
               Cave Technologies is a business-building agency that helps new and growing companies
@@ -178,9 +174,9 @@ export function About() {
             </a>
           </div>
           <div className="lg:col-span-3 lg:col-start-10">
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">Measured by</p>
-              <p className="mt-4 font-serif text-2xl leading-snug">
+              <p className="mt-4 font-display text-2xl leading-snug">
                 25+ client projects. 7+ companies helped. A focus on useful digital foundations.
               </p>
               <p className="mt-4 text-xs leading-6 text-muted">
@@ -192,14 +188,14 @@ export function About() {
         </div>
       </section>
 
-      <section className="dark-texture bg-charcoal py-16 text-paper md:py-24">
+      <section className="dark-texture band-butter bg-charcoal py-16 text-paper md:py-24">
         <div className="container-editorial grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-paper/60">04 / The systems layer</p>
+            <p className="eyebrow text-paper/60">The systems layer</p>
           </div>
           <div className="lg:col-span-5">
             <h2 className="display text-[clamp(2.6rem,5.5vw,5.2rem)]">
-              Linux, bare metal, and the <span className="italic text-paper/65">unglamorous work.</span>
+              Linux, bare metal and the work nobody sees
             </h2>
             <div className="mt-8 space-y-5 text-sm leading-7 text-paper/60">
               <p>
@@ -243,14 +239,14 @@ export function About() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">05 / How I work</p>
+            <p className="eyebrow text-muted">How I work</p>
           </div>
           <div className="lg:col-span-8 lg:col-start-5">
             <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
               {PRINCIPLES.map((principle, index) => (
                 <article key={principle.title} className="border-t border-line pt-4">
                   <span className="eyebrow text-muted">0{index + 1}</span>
-                  <h2 className="mt-5 font-serif text-2xl font-normal tracking-[-0.025em]">
+                  <h2 className="mt-5 font-display text-2xl font-semibold tracking-[-0.025em]">
                     {principle.title}
                   </h2>
                   <p className="mt-3 text-sm leading-7 text-muted">{principle.body}</p>
@@ -261,14 +257,14 @@ export function About() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light">
+      <section className="bg-paper-deep">
         <div className="container-editorial grid grid-cols-2 gap-y-8 py-10 md:grid-cols-4">
           {ACHIEVEMENTS.map((achievement) => (
             <div key={achievement.label} className="border-r border-line px-4 first:pl-0 last:border-r-0 md:px-7">
-              <p className="font-serif text-[clamp(2.4rem,5vw,4.2rem)] font-light leading-none tracking-[-0.04em]">
+              <p className="font-display text-[clamp(2.4rem,5vw,4.2rem)] font-semibold leading-none tracking-[-0.04em]">
                 {achievement.value}
               </p>
-              <p className="mt-3 text-[0.62rem] font-semibold uppercase tracking-[0.14em]">
+              <p className="mt-3 text-[0.8rem] font-semibold">
                 {achievement.label}
               </p>
               <p className="mt-2 text-xs leading-5 text-muted">{achievement.detail}</p>
@@ -282,7 +278,7 @@ export function About() {
           <div className="md:col-span-7">
             <p className="eyebrow text-muted">Next</p>
             <h2 className="display mt-4 text-[clamp(2.6rem,6vw,5.4rem)]">
-              See the work, or start a <span className="italic">conversation.</span>
+              Want to see the work, or talk about yours?
             </h2>
           </div>
           <div className="flex flex-wrap gap-3 md:col-span-5 md:justify-end">

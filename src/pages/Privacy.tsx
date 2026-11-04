@@ -12,10 +12,10 @@ export function Privacy() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Legal / Privacy"
+          eyebrow="Privacy"
           title={
             <>
-              Privacy, in <span className="italic text-muted">plain language.</span>
+              What this site collects, and what it doesn&rsquo;t
             </>
           }
           intro={
@@ -25,7 +25,7 @@ export function Privacy() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4 text-xs leading-6">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6 text-sm leading-6">
               <p className="eyebrow text-muted">Effective</p>
               <p className="mt-2">27 October 2026</p>
               <p className="mt-1 text-muted">Applies to shineakhanda.dev</p>
@@ -50,7 +50,7 @@ export function Privacy() {
 
           <div className="max-w-2xl lg:col-span-8 lg:col-start-5">
             <section id="information" className="scroll-mt-28">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">Information collected</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">Information collected</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   If you submit the contact form, the site asks for your name, email address, optional
@@ -66,7 +66,7 @@ export function Privacy() {
             </section>
 
             <section id="use" className="mt-12 scroll-mt-28 border-t border-line pt-8">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">How it is used</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">How it is used</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   The information is used to respond to your enquiry and understand the project
@@ -85,7 +85,7 @@ export function Privacy() {
             </section>
 
             <section id="hosting" className="mt-12 scroll-mt-28 border-t border-line pt-8">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">Hosting and services</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">Hosting and services</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   The production site is designed for Cloudflare Pages. Cloudflare and its underlying
@@ -102,7 +102,7 @@ export function Privacy() {
             </section>
 
             <section id="cookies" className="mt-12 scroll-mt-28 border-t border-line pt-8">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">Cookies and analytics</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">Cookies and analytics</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   This site does not include advertising cookies or a third-party analytics script in
@@ -116,7 +116,7 @@ export function Privacy() {
             </section>
 
             <section id="links" className="mt-12 scroll-mt-28 border-t border-line pt-8">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">External links</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">External links</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   This site links to project websites, social profiles, GitHub, and other external
@@ -131,7 +131,7 @@ export function Privacy() {
             </section>
 
             <section id="choices" className="mt-12 scroll-mt-28 border-t border-line pt-8">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.025em]">Your choices</h2>
+              <h2 className="font-display text-3xl font-semibold tracking-[-0.025em]">Your choices</h2>
               <div className="mt-4 space-y-4 text-sm leading-7 text-muted">
                 <p>
                   You can ask what enquiry information is held about you, request a correction, or ask

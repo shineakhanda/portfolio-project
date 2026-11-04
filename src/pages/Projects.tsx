@@ -15,10 +15,10 @@ export function Projects() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Selected work / 01—04"
+          eyebrow="Work"
           title={
             <>
-              Work that has to <span className="italic text-muted">work.</span>
+              Websites that real businesses run on
             </>
           }
           intro={
@@ -29,7 +29,7 @@ export function Projects() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">The collection</p>
               <ul className="mt-4 space-y-2">
                 {PROJECTS.map((project) => (
@@ -42,7 +42,7 @@ export function Projects() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-[0.65rem] leading-5 text-muted">
+              <p className="mt-4 text-[0.8rem] leading-5 text-muted">
                 Scroll through the project pages. On larger screens the selection moves like a
                 portfolio book; on mobile and reduced-motion settings it becomes a straightforward
                 stack.
@@ -57,7 +57,7 @@ export function Projects() {
           <h2 id="project-book-heading" className="eyebrow text-muted">
             The book of work
           </h2>
-          <p className="text-[0.62rem] uppercase tracking-[0.13em] text-muted">
+          <p className="text-[0.8rem] text-muted">
             Scroll to turn the page
           </p>
         </div>
@@ -70,7 +70,7 @@ export function Projects() {
             <div>
               <p className="eyebrow text-muted">Project index</p>
               <h2 className="display mt-4 text-[clamp(2.4rem,5vw,4.6rem)]">
-                All four, <span className="italic">in one place.</span>
+                All four projects at a glance
               </h2>
             </div>
             <ButtonLink href="/contact" variant="outline">
@@ -86,7 +86,7 @@ export function Projects() {
                   <div className="md:col-span-4">
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="font-serif text-2xl font-normal tracking-[-0.02em] transition-opacity hover:opacity-55"
+                      className="font-display text-2xl font-semibold tracking-[-0.02em] transition-opacity hover:opacity-55"
                     >
                       {project.title}
                     </Link>

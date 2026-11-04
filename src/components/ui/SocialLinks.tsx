@@ -46,10 +46,10 @@ export function SocialLinks({
               rel="noopener noreferrer"
               aria-label={link.label}
               className={cn(
-                "group inline-flex items-center gap-2 border p-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.12em] transition-colors",
+                "group inline-flex items-center gap-2 rounded-full border p-2.5 text-[0.8rem] font-semibold transition-colors",
                 tone === "dark"
                   ? "border-line-dark text-paper/65 hover:border-paper/50 hover:text-paper"
-                  : "border-line text-muted hover:border-ink hover:text-ink",
+                  : "border-line bg-paper text-muted hover:border-ink hover:bg-sky hover:text-ink",
                 showLabels && "px-3",
                 linkClassName,
               )}

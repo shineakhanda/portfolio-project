@@ -71,7 +71,7 @@ export function ShareLinks({ title, path, compact = false }: ShareLinksProps) {
           </a>
         </li>
       </ul>
-      <p className="mt-2 min-h-4 text-[0.62rem] text-muted" aria-live="polite">
+      <p className="mt-2 min-h-4 text-[0.8rem] text-muted" aria-live="polite">
         {copyState === "copied" ? "Link copied." : copyState === "failed" ? "Copy unavailable." : ""}
       </p>
       <span className="sr-only">{encodedTitle}</span>

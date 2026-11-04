@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 type SectionHeadingProps = {
+  /** Kept for compatibility; numbering is no longer displayed. */
   index?: string;
+  /** Kept for compatibility; small labels above headings are no longer displayed. */
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
@@ -13,8 +15,6 @@ type SectionHeadingProps = {
 };
 
 export function SectionHeading({
-  index,
-  eyebrow,
   title,
   description,
   link,
@@ -22,28 +22,11 @@ export function SectionHeading({
   tone = "light",
 }: SectionHeadingProps) {
   return (
-    <div
-      className={cn(
-        "grid gap-8 border-t pt-5 md:grid-cols-12 md:gap-6",
-        tone === "dark" ? "border-line-dark" : "border-line",
-        className,
-      )}
-    >
-      <div className="md:col-span-3">
-        <p
-          className={cn(
-            "eyebrow flex items-center gap-3",
-            tone === "dark" ? "text-paper/60" : "text-muted",
-          )}
-        >
-          {index ? <span>{index}</span> : null}
-          {eyebrow ? <span>{eyebrow}</span> : null}
-        </p>
-      </div>
-      <div className="md:col-span-6">
+    <div className={cn("grid gap-6 md:grid-cols-12 md:items-end", className)}>
+      <div className="md:col-span-8">
         <h2
           className={cn(
-            "display text-[clamp(2.2rem,5vw,4.2rem)]",
+            "display text-[clamp(2.1rem,4.6vw,3.8rem)]",
             tone === "dark" ? "text-paper" : "text-ink",
           )}
         >
@@ -52,8 +35,8 @@ export function SectionHeading({
         {description ? (
           <p
             className={cn(
-              "mt-5 max-w-xl text-sm leading-7",
-              tone === "dark" ? "text-paper/60" : "text-muted",
+              "mt-4 max-w-xl text-base leading-7",
+              tone === "dark" ? "text-paper/70" : "text-muted",
             )}
           >
             {description}
@@ -61,12 +44,12 @@ export function SectionHeading({
         ) : null}
       </div>
       {link ? (
-        <div className="flex items-start md:col-span-3 md:justify-end">
+        <div className="md:col-span-4 md:flex md:justify-end">
           <Link
             to={link.href}
             className={cn(
-              "link-underline eyebrow",
-              tone === "dark" ? "text-paper/70" : "text-ink",
+              "link-underline text-sm font-semibold",
+              tone === "dark" ? "text-paper" : "text-ink",
             )}
           >
             {link.label}

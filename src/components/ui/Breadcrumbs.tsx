@@ -19,7 +19,7 @@ export function Breadcrumbs({ items, tone = "light", className }: BreadcrumbsPro
     <nav
       aria-label="Breadcrumb"
       className={cn(
-        "text-[0.65rem] font-semibold uppercase tracking-[0.14em]",
+        "text-[0.8rem] font-semibold",
         tone === "dark" ? "text-paper/50" : "text-muted",
         className,
       )}

@@ -52,10 +52,10 @@ export function Blog() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Journal / Notes from the work"
+          eyebrow="Journal"
           title={
             <>
-              Useful thinking, <span className="italic text-muted">written down.</span>
+              Notes on building, marketing and running websites
             </>
           }
           intro={
@@ -66,16 +66,16 @@ export function Blog() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">The archive</p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-baseline justify-between border-b border-line pb-3">
                   <dt className="text-muted">Articles</dt>
-                  <dd className="font-serif text-2xl">{posts.length}</dd>
+                  <dd className="font-display text-2xl">{posts.length}</dd>
                 </div>
                 <div className="flex items-baseline justify-between border-b border-line pb-3">
                   <dt className="text-muted">Categories</dt>
-                  <dd className="font-serif text-2xl">{BLOG_CATEGORIES.length}</dd>
+                  <dd className="font-display text-2xl">{BLOG_CATEGORIES.length}</dd>
                 </div>
                 <div className="flex items-baseline justify-between">
                   <dt className="text-muted">Author</dt>
@@ -98,7 +98,7 @@ export function Blog() {
         <section className="container-editorial py-12 md:py-16">
           <div className="mb-7 flex items-center justify-between border-b border-line pb-3">
             <h2 className="eyebrow text-muted">Start here</h2>
-            <span className="text-[0.62rem] uppercase tracking-[0.12em] text-muted">
+            <span className="text-[0.8rem] text-muted">
               Featured reading
             </span>
           </div>
@@ -128,7 +128,7 @@ export function Blog() {
           <div>
             <p className="eyebrow text-muted">Archive</p>
             <h2 id="all-articles" className="display mt-3 text-[clamp(2.2rem,4.5vw,4rem)]">
-              All <span className="italic">articles.</span>
+              All articles
             </h2>
           </div>
           <p className="text-xs text-muted" aria-live="polite">
@@ -165,9 +165,9 @@ export function Blog() {
                 type="button"
                 onClick={() => setActiveCategory("all")}
                 aria-pressed={activeCategory === "all"}
-                className={`border px-2.5 py-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                className={`rounded-full border px-3 py-1.5 text-[0.82rem] font-semibold transition-colors ${
                   activeCategory === "all"
-                    ? "border-ink bg-ink text-paper"
+                    ? "border-ink bg-butter text-ink"
                     : "border-line text-muted hover:border-ink hover:text-ink"
                 }`}
               >
@@ -179,9 +179,9 @@ export function Blog() {
                   type="button"
                   onClick={() => setActiveCategory(category.slug)}
                   aria-pressed={activeCategory === category.slug}
-                  className={`border px-2.5 py-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.1em] transition-colors ${
+                  className={`rounded-full border px-3 py-1.5 text-[0.82rem] font-semibold transition-colors ${
                     activeCategory === category.slug
-                      ? "border-ink bg-ink text-paper"
+                      ? "border-ink bg-butter text-ink"
                       : "border-line text-muted hover:border-ink hover:text-ink"
                   }`}
                 >
@@ -200,7 +200,7 @@ export function Blog() {
           </div>
         ) : (
           <div className="mt-10 border border-line bg-paper-light p-8 text-center">
-            <p className="font-serif text-2xl">No articles match that search.</p>
+            <p className="font-display text-2xl">No articles match that search.</p>
             <p className="mt-2 text-sm text-muted">
               Try a broader term or clear the category filter.
             </p>
@@ -218,13 +218,13 @@ export function Blog() {
         )}
       </section>
 
-      <section className="border-y border-line bg-paper-light py-12 md:py-16">
+      <section className="bg-paper-deep py-12 md:py-16">
         <div className="container-editorial">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow text-muted">Categories</p>
               <h2 className="display mt-3 text-[clamp(2.1rem,4.2vw,3.6rem)]">
-                Browse by <span className="italic">discipline.</span>
+                Browse by topic
               </h2>
             </div>
             <p className="max-w-sm text-xs leading-5 text-muted">
@@ -263,7 +263,7 @@ export function Blog() {
               <Link
                 key={tag.slug}
                 to={`/blog/tags/${tag.slug}`}
-                className="border border-line px-2.5 py-1.5 text-[0.6rem] font-semibold uppercase tracking-[0.1em] text-muted transition-colors hover:border-ink hover:text-ink"
+                className="border border-line px-2.5 py-1.5 text-[0.8rem] font-semibold text-muted transition-colors hover:border-ink hover:text-ink rounded-full"
               >
                 {tag.label} <span className="text-muted">({tag.count})</span>
               </Link>

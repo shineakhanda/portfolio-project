@@ -74,10 +74,10 @@ export function Infrastructure() {
 
       <div className="container-editorial">
         <PageHeader
-          eyebrow="Systems / Linux & bare metal"
+          eyebrow="Linux and servers"
           title={
             <>
-              The website is only the <span className="italic text-muted">top layer.</span>
+              Under every website is a server someone has to look after
             </>
           }
           intro={
@@ -88,7 +88,7 @@ export function Infrastructure() {
             </p>
           }
           meta={
-            <div className="border-t border-ink pt-4">
+            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
               <p className="eyebrow text-muted">Environment</p>
               <ul className="mt-4 space-y-2">
                 {["Debian", "Ubuntu", "AlmaLinux", "CentOS", "Red Hat Enterprise Linux", "RHEL-based systems"].map(
@@ -98,12 +98,12 @@ export function Infrastructure() {
                       className="flex items-center justify-between border-b border-line pb-2 text-xs"
                     >
                       <span>{distribution}</span>
-                      <span className="text-[0.58rem] uppercase tracking-[0.12em] text-muted">Linux</span>
+                      <span className="text-[0.8rem] text-muted">Linux</span>
                     </li>
                   ),
                 )}
               </ul>
-              <p className="mt-4 text-[0.65rem] leading-5 text-muted">
+              <p className="mt-4 text-[0.8rem] leading-5 text-muted">
                 The operating systems are listed because they are part of the working practice — not
                 as a certification claim.
               </p>
@@ -115,10 +115,10 @@ export function Infrastructure() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow text-muted">01 / The interest</p>
+            <p className="eyebrow text-muted">The interest</p>
           </div>
           <div className="lg:col-span-6">
-            <div className="space-y-5 font-serif text-[clamp(1.18rem,1.8vw,1.42rem)] font-normal leading-[1.72] text-ink-soft">
+            <div className="space-y-5 font-sans text-[clamp(1.05rem,1.5vw,1.2rem)] font-normal leading-[1.7] text-ink-soft">
               <p>
                 Web development is my profession. System administration is my passion. The two are
                 not separate hobbies for me; they are different views of the same promise that a
@@ -141,7 +141,7 @@ export function Infrastructure() {
           <div className="lg:col-span-3">
             <div className="border border-line bg-paper-light p-5">
               <ShieldCheck size={22} strokeWidth={1.4} className="text-ink" aria-hidden="true" />
-              <p className="mt-5 font-serif text-xl leading-snug">
+              <p className="mt-5 font-display text-xl leading-snug">
                 No invented uptime figures. No fictional infrastructure clients.
               </p>
               <p className="mt-3 text-xs leading-6 text-muted">
@@ -153,13 +153,13 @@ export function Infrastructure() {
         </div>
       </section>
 
-      <section className="border-y border-line bg-paper-light py-14 md:py-20">
+      <section className="bg-paper-deep py-14 md:py-20">
         <div className="container-editorial">
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-8">
-              <p className="eyebrow text-muted">02 / Capabilities</p>
+              <p className="eyebrow text-muted">Capabilities</p>
               <h2 className="display mt-4 text-[clamp(2.6rem,5vw,4.8rem)]">
-                Practical work, not a <span className="italic">logo wall.</span>
+                What I actually do on servers
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-7 text-muted md:col-span-4">
@@ -185,7 +185,7 @@ export function Infrastructure() {
                       aria-hidden="true"
                     />
                   </div>
-                  <h3 className="mt-8 font-serif text-2xl font-normal tracking-[-0.02em]">
+                  <h3 className="mt-8 font-display text-2xl font-semibold tracking-[-0.02em]">
                     {capability.title}
                   </h3>
                   <p className="mt-3 text-xs leading-6 text-muted">{capability.body}</p>
@@ -199,9 +199,9 @@ export function Infrastructure() {
       <section className="container-editorial py-14 md:py-20">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="eyebrow text-muted">03 / The stack beneath the stack</p>
+            <p className="eyebrow text-muted">The stack beneath the stack</p>
             <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.4rem)]">
-              Think in <span className="italic">layers.</span>
+              How the layers fit together
             </h2>
             <p className="mt-5 max-w-sm text-sm leading-7 text-muted">
               When something is unreachable, the useful question is which layer has actually failed.
@@ -227,12 +227,12 @@ export function Infrastructure() {
         </div>
       </section>
 
-      <section className="dark-texture bg-charcoal py-16 text-paper md:py-24">
+      <section className="dark-texture band-apricot bg-charcoal py-16 text-paper md:py-24">
         <div className="container-editorial grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow text-paper/60">04 / Working approach</p>
+            <p className="eyebrow text-paper/60">Working approach</p>
             <h2 className="display mt-4 text-[clamp(2.6rem,5.4vw,5rem)]">
-              Calm beats <span className="italic text-paper/65">clever.</span>
+              Calm, careful and written down
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
@@ -259,7 +259,7 @@ export function Infrastructure() {
               </ButtonLink>
               <Link
                 to="/contact"
-                className="inline-flex min-h-[3rem] items-center gap-2 border border-line-dark px-4 text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-paper/65 transition-colors hover:border-paper hover:text-paper"
+                className="inline-flex min-h-[3rem] items-center gap-2 border border-line-dark px-4 text-[0.8rem] font-semibold text-paper/65 transition-colors hover:border-paper hover:text-paper"
               >
                 Discuss a server issue
               </Link>
@@ -273,7 +273,7 @@ export function Infrastructure() {
           <div className="lg:col-span-4">
             <p className="eyebrow text-muted">Selected reading</p>
             <h2 className="display mt-4 text-[clamp(2.3rem,4.5vw,4rem)]">
-              Learn how I <span className="italic">approach it.</span>
+              Read more about my approach
             </h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
@@ -284,7 +284,7 @@ export function Infrastructure() {
               >
                 <span>
                   <span className="eyebrow text-muted">Linux &amp; System Administration</span>
-                  <span className="mt-2 block font-serif text-2xl leading-tight transition-opacity group-hover:opacity-55">
+                  <span className="mt-2 block font-display text-2xl leading-tight transition-opacity group-hover:opacity-55">
                     Linux Server Troubleshooting: A Practical Introduction
                   </span>
                 </span>
@@ -296,7 +296,7 @@ export function Infrastructure() {
               >
                 <span>
                   <span className="eyebrow text-muted">Bare-Metal Infrastructure</span>
-                  <span className="mt-2 block font-serif text-2xl leading-tight transition-opacity group-hover:opacity-55">
+                  <span className="mt-2 block font-display text-2xl leading-tight transition-opacity group-hover:opacity-55">
                     Bare-Metal Servers vs VPS Hosting
                   </span>
                 </span>

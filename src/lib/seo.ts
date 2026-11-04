@@ -16,9 +16,9 @@ export function getPageSeo(inputPath: string): PageSeo {
 
   if (path === "/") {
     return {
-      title: "Shine Akhanda | Web Developer & Digital Marketing Expert",
+      title: "Shine Akhanda | Web Developer & SEO in Mymensingh, Bangladesh",
       description:
-        "Shine Akhanda is a web developer, digital marketing expert, and founder of Cave Technologies in Mymensingh, Bangladesh. Explore selected work and services.",
+        "Web developer, digital marketer and Linux admin in Mymensingh, Bangladesh. I build fast business websites, run SEO and ads, and keep the servers running.",
       path,
       type: "website",
       image: SITE.defaultImage,
@@ -28,9 +28,9 @@ export function getPageSeo(inputPath: string): PageSeo {
 
   if (path === "/about") {
     return {
-      title: "About Shine Akhanda | Developer, Founder & Linux Enthusiast",
+      title: "About Shine Akhanda | Web Developer & Founder of Cave Technologies",
       description:
-        "The professional background of Shine Akhanda: web development, digital marketing, Cave Technologies leadership, and hands-on Linux infrastructure experience.",
+        "Meet Shine Akhanda: web developer, digital marketer and founder of Cave Technologies in Mymensingh, with hands-on Linux server experience.",
       path,
       type: "profile",
       image: SITE.defaultImage,
@@ -40,9 +40,9 @@ export function getPageSeo(inputPath: string): PageSeo {
 
   if (path === "/projects") {
     return {
-      title: "Selected Projects | Shine Akhanda — Web Developer in Bangladesh",
+      title: "Website Projects & Case Studies | Shine Akhanda, Bangladesh",
       description:
-        "Explore selected live websites by Shine Akhanda across architecture, healthcare, education, and international manufacturing — with verified details and project context.",
+        "Live client websites by Shine Akhanda for an architecture studio, a Mymensingh hospital, an online madrasa and an international manufacturer, with case studies.",
       path,
       image: PROJECTS[0]?.image.src,
       imageAlt: PROJECTS[0]?.image.alt,
@@ -54,7 +54,7 @@ export function getPageSeo(inputPath: string): PageSeo {
     const project = getProjectBySlug(slug);
     if (!project) return notFoundSeo(path);
     return {
-      title: `${project.title} — ${project.category} Website | Shine Akhanda`,
+      title: `${project.title}: ${project.category} Website by Shine Akhanda`,
       description: project.summary,
       path,
       image: project.ogImage ?? project.image.src,
@@ -64,18 +64,18 @@ export function getPageSeo(inputPath: string): PageSeo {
 
   if (path === "/skills") {
     return {
-      title: "Skills & Technology Stack | Shine Akhanda",
+      title: "Skills: React, Next.js, SEO & Linux | Shine Akhanda",
       description:
-        "Shine Akhanda's stack spans React, Next.js, TypeScript, Angular, Node.js, Hono, PHP, databases, and Debian, Ubuntu, AlmaLinux, CentOS, and RHEL.",
+        "Shine Akhanda's skills across React, Next.js, TypeScript, PHP, Node.js, technical SEO, Google and Meta Ads, and Linux servers, linked to real client projects.",
       path,
     };
   }
 
   if (path === "/services") {
     return {
-      title: "Web Development & Digital Marketing Services | Shine Akhanda",
+      title: "Web Development, SEO & Marketing Services | Shine Akhanda",
       description:
-        "Website development, React and Next.js engineering, digital marketing, SEO, and Linux infrastructure services from Shine Akhanda in Mymensingh, Bangladesh.",
+        "Website development, React and Next.js, digital marketing, SEO and Linux server services from Shine Akhanda in Mymensingh, for clients in Bangladesh and abroad.",
       path,
     };
   }
@@ -145,16 +145,16 @@ export function getPageSeo(inputPath: string): PageSeo {
 
   if (path === "/infrastructure") {
     return {
-      title: "Linux & Bare-Metal Infrastructure | Shine Akhanda",
+      title: "Linux Server Setup, Troubleshooting & Recovery | Shine Akhanda",
       description:
-        "Linux server setup, bare-metal infrastructure, troubleshooting, and recovery experience from Shine Akhanda — the systems work behind dependable websites.",
+        "Linux server setup, bare-metal installs, troubleshooting and recovery on Debian, Ubuntu and RHEL: the systems work that keeps business websites online.",
       path,
     };
   }
 
   if (path === "/contact") {
     return {
-      title: "Contact Shine Akhanda | Web Developer in Mymensingh",
+      title: "Contact Shine Akhanda | Hire a Web Developer in Mymensingh",
       description:
         "Contact Shine Akhanda for web development, digital marketing, SEO, or Linux infrastructure work. Call +8801302776234, email me@shineakhanda.dev, or use the enquiry form.",
       path,

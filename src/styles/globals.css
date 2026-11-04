@@ -328,7 +328,7 @@
 
   .book-page {
     position: relative;
-    border: 1px solid rgba(38, 35, 31, 0.1);
+    border: 1.5px solid var(--color-ink);
     border-radius: var(--radius-card);
     background: var(--color-paper);
     box-shadow: var(--shadow-page);

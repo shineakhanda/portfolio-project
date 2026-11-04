@@ -2,6 +2,7 @@ import { BLOG_CATEGORIES, getCategoryBySlug, slugifyTag } from "@/data/blogTaxon
 import { PROJECTS, getProjectBySlug } from "@/data/projects";
 import { SERVICES, getServiceBySlug } from "@/data/services";
 import { SITE, SOCIAL_LINKS } from "@/data/site";
+import { getAllSkills, SKILL_CATEGORIES, SKILL_LAYERS } from "@/data/skills";
 import { getAllPosts, getPostBySlug, getPostsByCategory, getPostsByTag } from "@/lib/blogMeta";
 import { absoluteUrl } from "@/lib/utils";
 
@@ -15,6 +16,8 @@ const BLOG_ID = `${SITE.url}/blog#blog`;
 const personalProfiles = SOCIAL_LINKS.filter((link) => link.icon !== "github-cave").map(
   (link) => link.href,
 );
+
+const skillNames = [...new Set(getAllSkills().map((item) => item.name))];
 
 const organisationProfile = SOCIAL_LINKS.find((link) => link.icon === "github-cave")?.href;
 
@@ -50,25 +53,16 @@ const person: JsonLd = {
     "@type": "Occupation",
     name: "Web Developer",
     occupationLocation: { "@type": "City", name: "Mymensingh" },
-    skills:
-      "React, Next.js, TypeScript, JavaScript, Angular, Node.js, Hono, PHP, MongoDB, MySQL, PostgreSQL, Linux, bare-metal infrastructure",
+    skills: skillNames.join(", "),
   },
   worksFor: { "@id": ORGANISATION_ID },
   knowsAbout: [
     "Web development",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Angular",
-    "Node.js",
-    "Hono",
-    "PHP",
     "Digital marketing",
     "Search engine optimization",
     "Linux server administration",
     "Bare-metal infrastructure",
-    "Server recovery",
+    ...skillNames,
   ],
   sameAs: personalProfiles,
 };
@@ -278,6 +272,8 @@ export function getStructuredData(path: string): JsonLd {
           genre: project.category,
           keywords: project.stack.join(", "),
           inLanguage: "en",
+          creator: { "@id": PERSON_ID },
+          about: project.category,
           isPartOf: { "@id": pageId(path) },
         },
       );
@@ -356,8 +352,23 @@ export function getStructuredData(path: string): JsonLd {
       makeWebPage(
         path,
         "Skills & Technology Stack",
-        "Frontend, backend, database, Linux, and infrastructure capabilities.",
+        "Web development, marketing and SEO, and Linux server skills, linked to live client projects.",
       ),
+      {
+        "@type": "DefinedTermSet",
+        "@id": `${SITE.url}/skills#skills`,
+        name: "Skills of Shine Akhanda",
+        description: SKILL_LAYERS.map((layer) => `${layer.name}: ${layer.summary}`).join(" "),
+        hasDefinedTerm: SKILL_CATEGORIES.flatMap((category) =>
+          category.items.map((item) => ({
+            "@type": "DefinedTerm",
+            name: item.name,
+            description: item.description,
+            termCode: category.slug,
+            url: `${SITE.url}/skills#${category.slug}`,
+          })),
+        ),
+      },
     );
   } else if (path === "/infrastructure") {
     graph.push(

@@ -40,6 +40,8 @@ export const SITE = {
   defaultImage: "/images/og-default.jpg",
   defaultImageAlt: "Shine Akhanda — web developer and digital marketing expert in Bangladesh",
   currentYear: 2026,
+  /** Last significant update to the site pages; used as sitemap lastmod. */
+  contentUpdated: "2026-11-05",
   languages: ["English", "Bangla"],
 } as const;
 

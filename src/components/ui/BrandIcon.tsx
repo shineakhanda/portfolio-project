@@ -2,6 +2,9 @@ import {
   Activity,
   HardDrive,
   LifeBuoy,
+  Link2,
+  Rss,
+  Search,
   Server,
   ShieldCheck,
   SquareTerminal,
@@ -11,17 +14,26 @@ import type { IconType } from "react-icons";
 import {
   SiAlmalinux,
   SiAngular,
+  SiApache,
   SiBootstrap,
   SiCentos,
+  SiCloudflare,
   SiCss,
   SiDebian,
+  SiFramer,
+  SiGnubash,
+  SiGoogleads,
+  SiGoogleanalytics,
+  SiGooglesearchconsole,
   SiHono,
   SiHtml5,
   SiJavascript,
   SiLucide,
+  SiMeta,
   SiMongodb,
   SiMysql,
   SiNextdotjs,
+  SiNginx,
   SiNodedotjs,
   SiPhp,
   SiPostgresql,
@@ -34,10 +46,19 @@ import {
 } from "react-icons/si";
 import type { TechIconName } from "@/types/content";
 
-const BRAND_ICONS: Record<
-  Exclude<TechIconName, "server" | "hard-drive" | "terminal" | "activity" | "wrench" | "life-buoy" | "shield">,
-  IconType
-> = {
+type LucideIconName =
+  | "server"
+  | "hard-drive"
+  | "terminal"
+  | "activity"
+  | "wrench"
+  | "life-buoy"
+  | "shield"
+  | "search"
+  | "schema"
+  | "content";
+
+const BRAND_ICONS: Record<Exclude<TechIconName, LucideIconName>, IconType> = {
   html: SiHtml5,
   css: SiCss,
   javascript: SiJavascript,
@@ -60,6 +81,15 @@ const BRAND_ICONS: Record<
   almalinux: SiAlmalinux,
   centos: SiCentos,
   rhel: SiRedhat,
+  framer: SiFramer,
+  cloudflare: SiCloudflare,
+  nginx: SiNginx,
+  apache: SiApache,
+  bash: SiGnubash,
+  "google-ads": SiGoogleads,
+  meta: SiMeta,
+  "google-analytics": SiGoogleanalytics,
+  "search-console": SiGooglesearchconsole,
 };
 
 const LUCIDE_ICONS = {
@@ -70,7 +100,10 @@ const LUCIDE_ICONS = {
   wrench: Wrench,
   "life-buoy": LifeBuoy,
   shield: ShieldCheck,
-} as const;
+  search: Search,
+  schema: Link2,
+  content: Rss,
+} as const satisfies Record<LucideIconName, unknown>;
 
 type BrandIconProps = {
   name: TechIconName;

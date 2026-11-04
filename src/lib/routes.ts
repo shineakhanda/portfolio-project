@@ -2,6 +2,7 @@ import { PROJECTS } from "@/data/projects";
 import { SERVICES } from "@/data/services";
 import { BLOG_CATEGORIES } from "@/data/blogTaxonomy";
 import { getAllPosts, getTagArchives } from "@/lib/blogMeta";
+import { SITE } from "@/data/site";
 import type { RouteManifestItem } from "@/types/content";
 
 export function getRouteManifest(): RouteManifestItem[] {
@@ -9,15 +10,18 @@ export function getRouteManifest(): RouteManifestItem[] {
   const categories = BLOG_CATEGORIES;
   const tags = getTagArchives();
 
+  const lastmod = SITE.contentUpdated;
+  const latestPost = posts.map((post) => post.updated).sort().at(-1);
+
   const core: RouteManifestItem[] = [
-    { path: "/", priority: 1, changefreq: "monthly", sitemap: true },
-    { path: "/about", priority: 0.9, changefreq: "monthly", sitemap: true },
-    { path: "/projects", priority: 0.9, changefreq: "monthly", sitemap: true },
-    { path: "/services", priority: 0.9, changefreq: "monthly", sitemap: true },
-    { path: "/skills", priority: 0.8, changefreq: "monthly", sitemap: true },
-    { path: "/blog", priority: 0.9, changefreq: "weekly", sitemap: true },
-    { path: "/infrastructure", priority: 0.7, changefreq: "monthly", sitemap: true },
-    { path: "/contact", priority: 0.8, changefreq: "yearly", sitemap: true },
+    { path: "/", priority: 1, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/about", priority: 0.9, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/projects", priority: 0.9, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/services", priority: 0.9, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/skills", priority: 0.8, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/blog", priority: 0.9, changefreq: "weekly", lastmod: latestPost, sitemap: true },
+    { path: "/infrastructure", priority: 0.7, changefreq: "monthly", lastmod, sitemap: true },
+    { path: "/contact", priority: 0.8, changefreq: "yearly", lastmod, sitemap: true },
     { path: "/privacy", priority: 0.2, changefreq: "yearly", sitemap: false, noindex: true },
   ];
 
@@ -25,6 +29,7 @@ export function getRouteManifest(): RouteManifestItem[] {
     path: `/projects/${project.slug}`,
     priority: 0.8,
     changefreq: "monthly",
+    lastmod,
     sitemap: true,
   }));
 
@@ -32,6 +37,7 @@ export function getRouteManifest(): RouteManifestItem[] {
     path: `/services/${service.slug}`,
     priority: 0.8,
     changefreq: "monthly",
+    lastmod,
     sitemap: true,
   }));
 

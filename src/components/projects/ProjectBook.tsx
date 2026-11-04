@@ -5,13 +5,16 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { PROJECTS } from "@/data/projects";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { BrowserFrame } from "@/components/projects/BrowserFrame";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/content";
+
+const PANEL_COLORS = ["bg-sky", "bg-butter", "bg-apricot"] as const;
 
 type BookPageProps = {
   project: Project;
@@ -40,6 +43,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
   const opacity = useTransform(progress, [transformStart, transformEnd], [1, isLast ? 1 : 0.42]);
 
   const imageFirst = index % 2 === 1;
+  const panelColor = PANEL_COLORS[index % PANEL_COLORS.length];
 
   return (
     <div
@@ -56,16 +60,15 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
           <div
             className={cn(
               "relative flex flex-col p-5 sm:p-7 md:p-8 lg:col-span-5 lg:p-9",
+              panelColor,
               imageFirst ? "lg:order-2" : "lg:order-1",
             )}
           >
             <div className="flex items-start justify-between gap-4">
-              <p className="eyebrow text-muted">
-                Project {project.index} / {String(total).padStart(2, "0")}
+              <p className="text-sm font-semibold text-ink-soft">
+                {index + 1} of {total}
               </p>
-              <p className="text-right text-[0.8rem] font-semibold text-muted">
-                {project.category}
-              </p>
+              <p className="chip bg-paper/70">{project.category}</p>
             </div>
 
             <div className="my-auto py-9 lg:py-6">
@@ -75,14 +78,20 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
               >
                 {project.title}
               </h2>
-              <p className="mt-5 max-w-md text-sm leading-7 text-muted">{project.summary}</p>
+              <p className="mt-5 max-w-md text-[0.95rem] leading-7 text-ink-soft">{project.summary}</p>
 
-              <ul className="mt-6 flex flex-wrap gap-1.5" aria-label="Verified technologies">
+              <ul className="mt-5 space-y-1.5 text-sm text-ink-soft" aria-label="Highlights">
+                {project.highlights.slice(0, 3).map((highlight) => (
+                  <li key={highlight} className="flex gap-2">
+                    <Check size={16} strokeWidth={2} className="mt-0.5 shrink-0" aria-hidden="true" />
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Verified technologies">
                 {project.stack.map((technology) => (
-                  <li
-                    key={technology}
-                    className="border border-line px-2 py-1 text-[0.8rem] font-semibold text-muted rounded-full"
-                  >
+                  <li key={technology} className="chip bg-paper/70">
                     {technology}
                   </li>
                 ))}
@@ -91,7 +100,7 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
               <div className="mt-8 flex flex-wrap gap-2">
                 <Link
                   to={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2.5 text-[0.8rem] font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink rounded-full"
+                  className="button-primary"
                 >
                   Read case study
                 </Link>
@@ -99,18 +108,18 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
                   href={project.externalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-line px-4 py-2.5 text-[0.8rem] font-semibold transition-colors hover:border-ink rounded-full"
+                  className="button-outline hover:bg-paper"
                 >
-                  Live site <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
+                  Visit live site <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center justify-between border-t border-line pt-3">
-              <span className="text-[0.8rem] text-muted">
+            <div className="flex items-center justify-between border-t border-ink/15 pt-3">
+              <span className="text-[0.82rem] font-semibold text-ink-soft">
                 {project.projectType}
               </span>
-              <span className="flex items-center gap-2 text-[0.8rem] text-muted">
+              <span className="flex items-center gap-2 text-[0.82rem] text-ink-soft">
                 {isLast ? "End of selection" : "Continue"}
                 {isLast ? null : <ArrowDown size={12} strokeWidth={1.5} aria-hidden="true" />}
               </span>
@@ -119,28 +128,28 @@ function BookPage({ project, index, total, progress, animate }: BookPageProps) {
 
           <figure
             className={cn(
-              "relative min-h-[18rem] overflow-hidden border-t border-line bg-paper-deep lg:col-span-7 lg:min-h-0 lg:border-t-0",
+              "relative flex min-h-[18rem] border-ink lg:col-span-7 lg:min-h-0",
               imageFirst
-                ? "order-first border-b border-t-0 lg:order-1 lg:border-b-0 lg:border-r"
-                : "lg:order-2 lg:border-l",
+                ? "order-first border-b-[1.5px] lg:order-1 lg:border-b-0 lg:border-r-[1.5px]"
+                : "border-t-[1.5px] lg:order-2 lg:border-l-[1.5px] lg:border-t-0",
             )}
           >
-            <img
-              src={project.image.src}
-              alt={project.image.alt}
-              width={project.image.width}
-              height={project.image.height}
-              loading={index === 0 ? "eager" : "lazy"}
-              decoding="async"
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.015] lg:absolute lg:inset-0"
-            />
-            <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-3 border-t border-white/20 bg-black/55 px-4 py-2.5 text-[0.8rem] text-white/70 backdrop-blur-[2px]">
-              <span>{project.title}</span>
-              <span>{project.projectType}</span>
+            <BrowserFrame url={project.externalUrl} variant="flush" className="w-full">
+              <img
+                src={project.image.src}
+                alt={project.image.alt}
+                width={project.image.width}
+                height={project.image.height}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                className="h-full w-full object-cover object-top lg:absolute lg:inset-0"
+              />
+            </BrowserFrame>
+            <figcaption className="sr-only">
+              {project.title}, {project.projectType}
             </figcaption>
           </figure>
         </div>
-        <span className="page-corner" aria-hidden="true" />
       </motion.article>
     </div>
   );

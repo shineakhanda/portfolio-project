@@ -1,6 +1,10 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Info } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getProjectBySlug, getProjectNeighbours } from "@/data/projects";
+import { SERVICES } from "@/data/services";
+import { SKILL_CATEGORIES } from "@/data/skills";
+import { BrandIcon } from "@/components/ui/BrandIcon";
+import { BrowserFrame, displayHost } from "@/components/projects/BrowserFrame";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { NotFound } from "@/pages/NotFound";
@@ -14,6 +18,14 @@ export function ProjectDetails() {
   }
 
   const { previous, next } = getProjectNeighbours(project.slug);
+  const builtWith = SKILL_CATEGORIES.flatMap((category) =>
+    category.items
+      .filter((item) => item.projects?.includes(project.slug))
+      .map((item) => ({ item, categorySlug: category.slug })),
+  );
+  const relatedServices = SERVICES.filter((service) =>
+    service.relatedProjectSlugs.includes(project.slug),
+  );
 
   return (
     <>
@@ -31,15 +43,16 @@ export function ProjectDetails() {
         <header className="container-editorial pb-10 pt-10 md:pb-14 md:pt-16">
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-8">
-              <p className="eyebrow text-muted">
-                Project {project.index} / {project.category}
+              <p className="flex flex-wrap gap-2">
+                <span className="chip bg-sky">{project.category}</span>
+                <span className="chip">{project.projectType}</span>
               </p>
-              <h1 className="display mt-5 text-[clamp(4rem,10vw,9rem)]">{project.title}</h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-muted">{project.summary}</p>
+              <h1 className="display mt-5 text-[clamp(3.2rem,8vw,7rem)]">{project.title}</h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">{project.summary}</p>
             </div>
             <div className="md:col-span-4">
               <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
-                <dl className="space-y-3 text-xs">
+                <dl className="space-y-3 text-sm">
                   <div className="flex items-center justify-between gap-4 border-b border-line pb-3">
                     <dt className="text-muted">Type</dt>
                     <dd>{project.projectType}</dd>
@@ -50,9 +63,9 @@ export function ProjectDetails() {
                   </div>
                   <div className="flex items-center justify-between gap-4">
                     <dt className="text-muted">Status</dt>
-                    <dd className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden="true" />
-                      Live
+                    <dd className="flex items-center gap-2 font-semibold">
+                      <span className="h-2 w-2 rounded-full border border-ink bg-butter" aria-hidden="true" />
+                      Live at {displayHost(project.externalUrl)}
                     </dd>
                   </div>
                 </dl>
@@ -71,7 +84,7 @@ export function ProjectDetails() {
         </header>
 
         <figure className="container-editorial">
-          <div className="overflow-hidden border border-line bg-paper-deep rounded-3xl">
+          <BrowserFrame url={project.externalUrl}>
             <img
               src={project.image.src}
               alt={project.image.alt}
@@ -79,12 +92,11 @@ export function ProjectDetails() {
               height={project.image.height}
               fetchPriority="high"
               decoding="async"
-              className="max-h-[78vh] w-full object-cover object-top transition-[filter] duration-700"
+              className="max-h-[78vh] w-full object-cover object-top"
             />
-          </div>
-          <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3 text-[0.8rem] text-muted">
-            <span>Public website screenshot / {project.title}</span>
-            <span>{project.externalUrl.replace("https://", "")}</span>
+          </BrowserFrame>
+          <figcaption className="mt-3 text-sm text-muted">
+            The public {project.title} website, as it appears today.
           </figcaption>
         </figure>
 
@@ -101,22 +113,35 @@ export function ProjectDetails() {
               </div>
             </div>
             <aside className="lg:col-span-3">
-              <div className="border-t border-line pt-4">
-                <p className="eyebrow text-muted">Verified technology</p>
-                <ul className="mt-4 space-y-2">
+              <div className="rounded-[var(--radius-card)] bg-paper-deep p-6">
+                <h2 className="font-display text-xl font-bold">Built with</h2>
+                <ul className="mt-4 flex flex-wrap gap-2">
                   {project.stack.map((technology) => (
-                    <li
-                      key={technology}
-                      className="flex items-center gap-2 border-b border-line pb-2 text-sm"
-                    >
-                      <span className="h-1 w-1 rounded-full bg-ink" aria-hidden="true" />
+                    <li key={technology} className="chip bg-paper">
                       {technology}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 text-[0.8rem] leading-5 text-muted">
-                  Every technology listed here is supported by public website evidence or the
-                  project&rsquo;s visible implementation.
+                {builtWith.length > 0 ? (
+                  <>
+                    <p className="mt-5 text-sm font-semibold text-muted">More about these skills</p>
+                    <ul className="mt-2 space-y-2">
+                      {builtWith.map(({ item, categorySlug }) => (
+                        <li key={item.name}>
+                          <Link
+                            to={`/skills#${categorySlug}`}
+                            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-muted"
+                          >
+                            <BrandIcon name={item.icon} size={15} />
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : null}
+                <p className="mt-5 text-[0.8rem] leading-5 text-muted">
+                  Only technology that can be seen in the live site is listed.
                 </p>
               </div>
             </aside>
@@ -135,14 +160,19 @@ export function ProjectDetails() {
               <p className="font-display text-[clamp(1.35rem,2.4vw,2rem)] font-semibold leading-[1.45] tracking-[-0.02em]">
                 {project.objective}
               </p>
-              <div className="mt-9 grid gap-5 sm:grid-cols-2">
-                {project.highlights.map((highlight, index) => (
-                  <div key={highlight} className="border-t border-line pt-3">
-                    <span className="eyebrow text-muted">0{index + 1}</span>
-                    <p className="mt-3 text-sm leading-6 text-ink-soft">{highlight}</p>
-                  </div>
+              <ul className="mt-9 grid gap-3 sm:grid-cols-2">
+                {project.highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="flex gap-3 rounded-[var(--radius-soft)] border border-line bg-paper p-4 text-[0.95rem] leading-6 text-ink-soft"
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink bg-butter">
+                      <Check size={14} strokeWidth={2.2} aria-hidden="true" />
+                    </span>
+                    {highlight}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </section>
@@ -153,7 +183,7 @@ export function ProjectDetails() {
               <p className="eyebrow text-muted">Role &amp; scope</p>
             </div>
             <div className="lg:col-span-7">
-              <div className="border border-line bg-paper-light p-6 md:p-8">
+              <div className="rounded-[var(--radius-card)] border border-line bg-paper-light p-6 md:p-8">
                 <Info size={20} strokeWidth={1.4} className="text-muted" aria-hidden="true" />
                 <h2 className="mt-5 font-display text-2xl font-semibold tracking-[-0.02em]">
                   A note on this case study
@@ -169,25 +199,20 @@ export function ProjectDetails() {
                 </ButtonLink>
               </div>
             </div>
-            <div className="lg:col-span-2">
-              <a
-                href={project.externalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <span className="eyebrow text-muted">Live project</span>
-                <span className="mt-4 block font-display text-2xl leading-tight group-hover:opacity-55">
-                  {project.title}
-                </span>
-                <ArrowUpRight
-                  size={18}
-                  strokeWidth={1.3}
-                  className="mt-4 text-muted transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  aria-hidden="true"
-                />
-              </a>
-            </div>
+            {relatedServices.length > 0 ? (
+              <nav aria-label="Related services" className="lg:col-span-2">
+                <p className="text-sm font-semibold text-muted">Related services</p>
+                <ul className="mt-3 space-y-2">
+                  {relatedServices.map((service) => (
+                    <li key={service.slug}>
+                      <Link to={`/services/${service.slug}`} className="link-underline text-sm font-semibold">
+                        {service.shortTitle}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ) : null}
           </div>
         </section>
 
@@ -196,12 +221,12 @@ export function ProjectDetails() {
             {previous ? (
               <Link
                 to={`/projects/${previous.slug}`}
-                className="group border border-line bg-paper-light p-6 transition-colors hover:border-ink md:p-8"
+                className="group rounded-[var(--radius-card)] border-[1.5px] border-line bg-paper p-6 transition-colors hover:border-ink hover:bg-sky md:p-8"
               >
                 <span className="eyebrow flex items-center gap-2 text-muted">
                   <ArrowLeft size={12} strokeWidth={1.5} aria-hidden="true" /> Previous project
                 </span>
-                <span className="mt-6 block font-display text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.03em] transition-opacity group-hover:opacity-55">
+                <span className="mt-6 block font-display text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.03em]">
                   {previous.title}
                 </span>
                 <span className="mt-3 block text-xs text-muted">{previous.category}</span>
@@ -210,12 +235,12 @@ export function ProjectDetails() {
             {next ? (
               <Link
                 to={`/projects/${next.slug}`}
-                className="group border border-line bg-paper-light p-6 text-right transition-colors hover:border-ink md:p-8"
+                className="group rounded-[var(--radius-card)] border-[1.5px] border-line bg-paper p-6 text-right transition-colors hover:border-ink hover:bg-butter md:p-8"
               >
                 <span className="eyebrow flex items-center justify-end gap-2 text-muted">
                   Next project <ArrowRight size={12} strokeWidth={1.5} aria-hidden="true" />
                 </span>
-                <span className="mt-6 block font-display text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.03em] transition-opacity group-hover:opacity-55">
+                <span className="mt-6 block font-display text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.03em]">
                   {next.title}
                 </span>
                 <span className="mt-3 block text-xs text-muted">{next.category}</span>

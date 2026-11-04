@@ -71,18 +71,37 @@ export type TechIconName =
   | "activity"
   | "wrench"
   | "life-buoy"
-  | "shield";
+  | "shield"
+  | "framer"
+  | "cloudflare"
+  | "nginx"
+  | "apache"
+  | "bash"
+  | "google-ads"
+  | "meta"
+  | "google-analytics"
+  | "search-console"
+  | "search"
+  | "schema"
+  | "content";
 
 export type TechItem = {
   name: string;
   description: string;
   icon: TechIconName;
+  /** Part of the stack used on most projects. */
+  core?: boolean;
+  /** Slugs of portfolio projects whose verified stack includes this tool. */
+  projects?: string[];
 };
+
+/** The three layers of the practice, top to bottom. */
+export type SkillLayer = "web" | "marketing" | "server";
 
 export type SkillCategory = {
   slug: string;
   title: string;
-  label: string;
+  layer: SkillLayer;
   description: string;
   items: TechItem[];
 };

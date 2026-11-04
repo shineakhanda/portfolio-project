@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { BrowserFrame } from "@/components/projects/BrowserFrame";
 import type { Project } from "@/types/content";
 
 type ProjectCardProps = {
@@ -12,19 +13,21 @@ export function ProjectCard({ project, priority = false }: ProjectCardProps) {
     <article className="group">
       <Link
         to={`/projects/${project.slug}`}
-        className="block overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-deep"
+        className="block transition-transform duration-300 group-hover:-translate-y-1"
         aria-label={`View ${project.title} project`}
       >
-        <img
-          src={project.image.src}
-          alt={project.image.alt}
-          width={project.image.width}
-          height={project.image.height}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-          decoding="async"
-          className="aspect-[1.4/1] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-        />
+        <BrowserFrame url={project.externalUrl}>
+          <img
+            src={project.image.src}
+            alt={project.image.alt}
+            width={project.image.width}
+            height={project.image.height}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            decoding="async"
+            className="aspect-[1.45/1] w-full object-cover object-top"
+          />
+        </BrowserFrame>
       </Link>
 
       <div className="mt-5 flex flex-wrap items-center gap-2">

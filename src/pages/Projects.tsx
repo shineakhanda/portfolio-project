@@ -16,98 +16,81 @@ export function Projects() {
       <div className="container-editorial">
         <PageHeader
           eyebrow="Work"
-          title={
-            <>
-              Websites that real businesses run on
-            </>
-          }
+          title="Websites that real businesses run on"
           intro={
             <p>
-              Four live projects across architecture, healthcare, education, and manufacturing. This
-              is an editorial selection, not a claim that every detail of every engagement is public.
-              Each case study records verified context and links to the real website.
+              Four live client websites in Bangladesh and abroad: an architecture studio, a hospital
+              in Mymensingh, an online madrasa and an international wig manufacturer. Each case study
+              sticks to what can be verified and links to the real site.
             </p>
           }
-          meta={
-            <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
-              <p className="eyebrow text-muted">The collection</p>
-              <ul className="mt-4 space-y-2">
-                {PROJECTS.map((project) => (
-                  <li
-                    key={project.slug}
-                    className="flex items-center justify-between gap-4 border-b border-line pb-2 text-xs"
-                  >
-                    <span>{project.title}</span>
-                    <span className="text-muted">{project.category}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-[0.8rem] leading-5 text-muted">
-                Scroll through the project pages. On larger screens the selection moves like a
-                portfolio book; on mobile and reduced-motion settings it becomes a straightforward
-                stack.
-              </p>
-            </div>
+          aside={
+            <nav aria-label="Jump to a project" className="flex flex-wrap gap-2 md:justify-end">
+              {PROJECTS.map((project) => (
+                <a
+                  key={project.slug}
+                  href={`#project-page-${project.slug}`}
+                  className="chip bg-paper transition-colors hover:bg-butter"
+                >
+                  {project.title}
+                </a>
+              ))}
+            </nav>
           }
         />
       </div>
 
-      <section className="container-editorial py-10 md:py-16" aria-labelledby="project-book-heading">
-        <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b border-line pb-4">
-          <h2 id="project-book-heading" className="eyebrow text-muted">
-            The book of work
-          </h2>
-          <p className="text-[0.8rem] text-muted">
-            Scroll to turn the page
-          </p>
-        </div>
+      <section className="container-editorial pb-10 md:pb-16" aria-labelledby="project-book-heading">
+        <h2 id="project-book-heading" className="sr-only">
+          Client projects
+        </h2>
         <ProjectBook />
       </section>
 
-      <section className="border-t border-line bg-paper-light py-14 md:py-20">
+      <section className="bg-paper-deep py-14 md:py-20" aria-labelledby="project-index">
         <div className="container-editorial">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow text-muted">Project index</p>
-              <h2 className="display mt-4 text-[clamp(2.4rem,5vw,4.6rem)]">
-                All four projects at a glance
-              </h2>
-            </div>
+            <h2 id="project-index" className="display text-[clamp(2.2rem,4.4vw,3.6rem)]">
+              All projects at a glance
+            </h2>
             <ButtonLink href="/contact" variant="outline">
-              Discuss a project
+              Discuss your project
             </ButtonLink>
           </div>
 
-          <ul className="mt-10 border-t border-line">
+          <ul className="mt-10 grid gap-3">
             {PROJECTS.map((project) => (
-              <li key={project.slug} className="border-b border-line">
-                <div className="grid gap-4 py-5 md:grid-cols-12 md:items-center">
-                  <span className="eyebrow text-muted md:col-span-1">{project.index}</span>
-                  <div className="md:col-span-4">
-                    <Link
-                      to={`/projects/${project.slug}`}
-                      className="font-display text-2xl font-semibold tracking-[-0.02em] transition-opacity hover:opacity-55"
-                    >
-                      {project.title}
-                    </Link>
-                  </div>
-                  <p className="text-xs text-muted md:col-span-4">{project.category}</p>
-                  <div className="flex gap-4 md:col-span-3 md:justify-end">
-                    <Link
-                      to={`/projects/${project.slug}`}
-                      className="link-underline eyebrow text-ink"
-                    >
-                      Case study
-                    </Link>
-                    <a
-                      href={project.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-underline eyebrow text-ink"
-                    >
-                      Live <ArrowUpRight size={13} strokeWidth={1.5} aria-hidden="true" />
-                    </a>
-                  </div>
+              <li
+                key={project.slug}
+                className="grid items-center gap-4 rounded-[var(--radius-soft)] border border-line bg-paper p-4 sm:grid-cols-[6rem_1fr_auto] md:p-5"
+              >
+                <img
+                  src={project.image.src}
+                  alt=""
+                  width={project.image.width}
+                  height={project.image.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="hidden aspect-[4/3] w-24 rounded-xl border border-line object-cover object-top sm:block"
+                />
+                <div>
+                  <Link
+                    to={`/projects/${project.slug}`}
+                    className="font-display text-[1.5rem] font-bold tracking-[-0.02em] transition-colors hover:text-muted"
+                  >
+                    {project.title}
+                  </Link>
+                  <p className="mt-1 text-sm text-muted">
+                    {project.projectType} for {project.category.toLowerCase()}
+                  </p>
+                </div>
+                <div className="flex gap-5 text-sm font-semibold">
+                  <Link to={`/projects/${project.slug}`} className="link-underline">
+                    Case study
+                  </Link>
+                  <a href={project.externalUrl} target="_blank" rel="noopener noreferrer" className="link-underline">
+                    Live site <ArrowUpRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                  </a>
                 </div>
               </li>
             ))}

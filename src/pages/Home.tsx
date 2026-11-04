@@ -72,12 +72,14 @@ export function Home() {
       {/* Hero */}
       <section className="container-editorial grid gap-12 pb-16 pt-10 md:pt-16 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-24">
         <div className="lg:col-span-7">
-          <p className="flex items-center gap-2 text-sm font-semibold text-muted">
-            <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
-            Shine Akhanda, {SITE.location.display}
-          </p>
-          <h1 className="display mt-5 text-[clamp(2.9rem,6.6vw,5.6rem)]">
-            Websites that bring in customers, on servers that stay up.
+          <h1>
+            <span className="flex items-center gap-2 text-sm font-semibold text-muted">
+              <MapPin size={15} strokeWidth={1.8} aria-hidden="true" />
+              Shine Akhanda, web developer and digital marketer in {SITE.location.display}
+            </span>
+            <span className="display mt-5 block text-[clamp(2.9rem,6.6vw,5.6rem)]">
+              Websites that bring in customers, on servers that stay up.
+            </span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-ink-soft">
             I build websites for businesses in Bangladesh and abroad, run the marketing that brings

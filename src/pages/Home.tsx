@@ -6,7 +6,7 @@ import { SKILL_CATEGORIES } from "@/data/skills";
 import { getFeaturedPosts } from "@/lib/blogMeta";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { BrandIcon } from "@/components/ui/BrandIcon";
-import { ProjectCard } from "@/components/ui/ProjectCard";
+import { ProjectTile } from "@/components/projects/ProjectTile";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -166,9 +166,9 @@ export function Home() {
           link={{ label: "See all projects", href: "/projects" }}
           className="mb-10 md:mb-14"
         />
-        <div className="grid gap-x-10 gap-y-16 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2">
           {PROJECTS.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectTile key={project.slug} project={project} className="h-full" />
           ))}
         </div>
       </section>

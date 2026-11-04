@@ -316,34 +316,9 @@
     background: var(--color-paper-deep);
   }
 
-  .page-corner {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 2.7rem;
-    height: 2.7rem;
-    background: linear-gradient(135deg, transparent 50%, var(--color-butter) 50%);
-    pointer-events: none;
-  }
 
-  .book-page {
-    position: relative;
-    border: 1.5px solid var(--color-ink);
-    border-radius: var(--radius-card);
-    background: var(--color-paper);
-    box-shadow: var(--shadow-page);
-    transform-style: preserve-3d;
-    will-change: transform;
-    overflow: hidden;
-  }
 
-  .book-page::before {
-    content: none;
-  }
 
-  .book-page-inner {
-    background-image: none;
-  }
 
   /* The signature: the work drawn as three stacked layers. */
   .strata {
@@ -696,10 +671,6 @@
     transition: none;
   }
 
-  .project-book-card {
-    position: static !important;
-    margin-bottom: 2rem !important;
-  }
 }
 
 @layer components {

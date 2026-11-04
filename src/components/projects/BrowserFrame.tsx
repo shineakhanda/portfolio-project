@@ -6,8 +6,11 @@ type BrowserFrameProps = {
   url: string;
   children: ReactNode;
   className?: string;
-  /** Use "flush" when the frame sits inside another bordered surface. */
-  variant?: "card" | "flush";
+  /**
+   * "card" is a standalone rounded window, "flush" sits inside another bordered
+   * surface, "tile" is open at the bottom so it can rise out of a card edge.
+   */
+  variant?: "card" | "flush" | "tile";
 };
 
 export function displayHost(url: string): string {
@@ -21,6 +24,7 @@ export function BrowserFrame({ url, children, className, variant = "card" }: Bro
       className={cn(
         "flex flex-col overflow-hidden bg-paper",
         variant === "card" && "rounded-[var(--radius-card)] border-[1.5px] border-ink",
+        variant === "tile" && "rounded-t-[var(--radius-soft)] border-x-[1.5px] border-t-[1.5px] border-ink",
         className,
       )}
     >

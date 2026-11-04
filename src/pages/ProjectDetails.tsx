@@ -1,10 +1,11 @@
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Info } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getProjectBySlug, getProjectNeighbours } from "@/data/projects";
 import { SERVICES } from "@/data/services";
 import { SKILL_CATEGORIES } from "@/data/skills";
 import { BrandIcon } from "@/components/ui/BrandIcon";
 import { BrowserFrame, displayHost } from "@/components/projects/BrowserFrame";
+import { projectTone } from "@/components/projects/ProjectTile";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { NotFound } from "@/pages/NotFound";
@@ -18,6 +19,7 @@ export function ProjectDetails() {
   }
 
   const { previous, next } = getProjectNeighbours(project.slug);
+  const tone = projectTone(project.slug);
   const builtWith = SKILL_CATEGORIES.flatMap((category) =>
     category.items
       .filter((item) => item.projects?.includes(project.slug))
@@ -40,61 +42,39 @@ export function ProjectDetails() {
       </div>
 
       <article>
-        <header className="container-editorial pb-10 pt-10 md:pb-14 md:pt-16">
-          <div className="grid gap-8 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-8">
-              <p className="flex flex-wrap gap-2">
-                <span className="chip bg-sky">{project.category}</span>
-                <span className="chip">{project.projectType}</span>
-              </p>
-              <h1 className="display mt-5 text-[clamp(3.2rem,8vw,7rem)]">{project.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">{project.summary}</p>
-            </div>
-            <div className="md:col-span-4">
-              <div className="rounded-[var(--radius-card)] border-[1.5px] border-ink bg-sky p-6">
-                <dl className="space-y-3 text-sm">
-                  <div className="flex items-center justify-between gap-4 border-b border-line pb-3">
-                    <dt className="text-muted">Type</dt>
-                    <dd>{project.projectType}</dd>
-                  </div>
-                  <div className="flex items-center justify-between gap-4 border-b border-line pb-3">
-                    <dt className="text-muted">Sector</dt>
-                    <dd>{project.category}</dd>
-                  </div>
-                  <div className="flex items-center justify-between gap-4">
-                    <dt className="text-muted">Status</dt>
-                    <dd className="flex items-center gap-2 font-semibold">
-                      <span className="h-2 w-2 rounded-full border border-ink bg-butter" aria-hidden="true" />
-                      Live at {displayHost(project.externalUrl)}
-                    </dd>
-                  </div>
-                </dl>
-                <a
-                  href={project.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex w-full items-center justify-between rounded-full border-[1.5px] border-ink bg-ink px-5 py-3 text-sm font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink"
-                >
-                  Visit live website
-                  <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                </a>
-              </div>
-            </div>
+        <header className="container-editorial pb-10 pt-10 md:pb-12 md:pt-14">
+          <p className="flex flex-wrap gap-2">
+            <span className={`chip ${tone}`}>{project.category}</span>
+            <span className="chip">{project.projectType}</span>
+          </p>
+          <h1 className="display mt-5 max-w-4xl text-[clamp(3rem,7.5vw,6.4rem)]">{project.title}</h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-ink-soft">{project.summary}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <ButtonLink href={project.externalUrl}>Visit {displayHost(project.externalUrl)}</ButtonLink>
+            <ButtonLink href="/contact" variant="outline">
+              Discuss a similar project
+            </ButtonLink>
+            <span className="ml-1 inline-flex items-center gap-2 text-sm font-semibold text-muted">
+              <span className="h-2.5 w-2.5 rounded-full border border-ink bg-butter" aria-hidden="true" />
+              Live today
+            </span>
           </div>
         </header>
 
         <figure className="container-editorial">
-          <BrowserFrame url={project.externalUrl}>
-            <img
-              src={project.image.src}
-              alt={project.image.alt}
-              width={project.image.width}
-              height={project.image.height}
-              fetchPriority="high"
-              decoding="async"
-              className="max-h-[78vh] w-full object-cover object-top"
-            />
-          </BrowserFrame>
+          <div className={`overflow-hidden rounded-[var(--radius-card)] border-[1.5px] border-ink px-4 pt-6 sm:px-10 sm:pt-12 lg:px-16 lg:pt-16 ${tone}`}>
+            <BrowserFrame url={project.externalUrl} variant="tile" className="shadow-[var(--shadow-lift)]">
+              <img
+                src={project.image.src}
+                alt={project.image.alt}
+                width={project.image.width}
+                height={project.image.height}
+                fetchPriority="high"
+                decoding="async"
+                className="max-h-[72vh] w-full object-cover object-top"
+              />
+            </BrowserFrame>
+          </div>
           <figcaption className="mt-3 text-sm text-muted">
             The public {project.title} website, as it appears today.
           </figcaption>

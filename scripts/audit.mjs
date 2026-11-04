@@ -146,18 +146,12 @@ await page.screenshot({ path: path.join(out, "projects-top.png") });
 await page.evaluate(() => window.scrollTo(0, 1050));
 await page.waitForTimeout(500);
 await page.screenshot({ path: path.join(out, "projects-scroll.png") });
-const bookState = await page.evaluate(() => {
-  const cards = [...document.querySelectorAll(".project-book-card")];
-  return cards.map((card) => {
-    const inner = card.querySelector(".book-page");
-    return {
-      top: Math.round(card.getBoundingClientRect().top),
-      position: getComputedStyle(card).position,
-      transform: inner ? getComputedStyle(inner).transform : null,
-      zIndex: getComputedStyle(card).zIndex,
-    };
-  });
-});
+const projectTiles = await page.evaluate(() =>
+  [...document.querySelectorAll('li[id^="project-"] article')].map((tile) => ({
+    top: Math.round(tile.getBoundingClientRect().top),
+    width: Math.round(tile.getBoundingClientRect().width),
+  })),
+);
 
 await page.goto(`${base}/blog`, { waitUntil: "networkidle" });
 await page.fill("#journal-search", "typescript");
@@ -270,8 +264,8 @@ const tablet = await browser.newContext({ viewport: { width: 820, height: 1180 }
 const tabletPage = await tablet.newPage();
 await tabletPage.goto(`${base}/projects`, { waitUntil: "networkidle" });
 const tabletState = await tabletPage.evaluate(() => {
-  const card = document.querySelector(".project-book-card");
-  return card ? { position: getComputedStyle(card).position } : null;
+  const tiles = [...document.querySelectorAll('li[id^="project-"] article')];
+  return { tiles: tiles.length, widths: tiles.map((tile) => Math.round(tile.getBoundingClientRect().width)) };
 });
 
 const reduced = await browser.newContext({
@@ -281,10 +275,8 @@ const reduced = await browser.newContext({
 const reducedPage = await reduced.newPage();
 await reducedPage.goto(`${base}/projects`, { waitUntil: "networkidle" });
 const reducedState = await reducedPage.evaluate(() => {
-  const card = document.querySelector(".project-book-card");
-  return card
-    ? { position: getComputedStyle(card).position, marginBottom: getComputedStyle(card).marginBottom }
-    : null;
+  const tile = document.querySelector('li[id^="project-"] article');
+  return tile ? { transform: getComputedStyle(tile.querySelector("div:last-of-type") ?? tile).transform } : null;
 });
 
 console.log(
@@ -295,7 +287,7 @@ console.log(
       expectedHttpErrors,
       failedImages,
       accessibility,
-      bookState,
+      projectTiles,
       searchState,
       formErrors,
       contactFailureState,

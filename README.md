@@ -12,6 +12,15 @@ A multi-page React site that is prerendered to static HTML and deployed on Cloud
 - Markdown articles (Marked + js-yaml)
 - Self-hosted Bricolage Grotesque and Manrope fonts
 
+## Using this for your own portfolio
+
+You're welcome to. Two guides walk you through it:
+
+- [docs/CUSTOMIZE.md](docs/CUSTOMIZE.md): replace the content, photos, projects, skills and colours with your own
+- [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md): put it online on Cloudflare, set up the contact form and add a domain
+
+The code is MIT licensed. Shine's portrait, screenshots, articles and copy are not, so replace them before you publish.
+
 ## Getting started
 
 Requires Node.js 20 or newer.
@@ -74,26 +83,9 @@ The article page, sitemap entry, RSS item and archive listings are generated on 
 
 ## Deployment
 
-The site deploys as a Cloudflare Worker (`wrangler.toml`):
+Deployed as a Cloudflare Worker (`wrangler.toml`). Build command `npm run build`, deploy command `npx wrangler deploy`. Every push to `main` triggers a deploy, so group changes into one commit where possible.
 
-- Build command: `npm run build`
-- Deploy command: `npx wrangler deploy`
-
-Every push to `main` triggers a deploy. Group changes into one commit where possible.
-
-### Environment variables
-
-```text
-SITE_URL=https://shineakhanda.dev
-VITE_SITE_URL=https://shineakhanda.dev
-RESEND_API_KEY=...
-CONTACT_TO_EMAIL=me@shineakhanda.dev
-CONTACT_FROM_EMAIL=Shine Akhanda Website <website@shineakhanda.dev>
-```
-
-`SITE_URL` and `VITE_SITE_URL` must match. The contact form sends through [Resend](https://resend.com) and returns an error until `RESEND_API_KEY` and a verified sender are set.
-
-The repo also contains a Cloudflare Pages setup (`functions/`, `public/_headers`, `public/_routes.json`) if you ever switch from Workers to Pages.
+Environment variables, the contact form and custom domains are covered in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Project layout
 
@@ -107,7 +99,7 @@ src/
   server/api.ts   Hono contact API
 worker/index.ts   Cloudflare Worker entry
 scripts/          build, prerender, validation and audit scripts
-docs/SEO.md       keyword and SEO notes
+docs/             deployment, customisation and SEO guides
 ```
 
 ## License

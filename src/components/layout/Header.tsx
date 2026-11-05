@@ -9,9 +9,36 @@ import { cn } from "@/lib/utils";
 export function StrataMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true" focusable="false">
-      <rect x="2" y="4" width="22" height="8" rx="4" fill="var(--color-sky)" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="5" y="12" width="22" height="8" rx="4" fill="var(--color-butter)" stroke="currentColor" strokeWidth="1.6" />
-      <rect x="8" y="20" width="22" height="8" rx="4" fill="var(--color-apricot)" stroke="currentColor" strokeWidth="1.6" />
+      <rect
+        x="2"
+        y="4"
+        width="22"
+        height="8"
+        rx="4"
+        fill="var(--color-sky)"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <rect
+        x="5"
+        y="12"
+        width="22"
+        height="8"
+        rx="4"
+        fill="var(--color-butter)"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <rect
+        x="8"
+        y="20"
+        width="22"
+        height="8"
+        rx="4"
+        fill="var(--color-apricot)"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
     </svg>
   );
 }
@@ -65,8 +92,8 @@ export function Header() {
       const menuLinks = Array.from(
         menuRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? [],
       );
-      const focusable = [menuButtonRef.current, ...menuLinks].filter(
-        (element): element is HTMLElement => Boolean(element),
+      const focusable = [menuButtonRef.current, ...menuLinks].filter((element): element is HTMLElement =>
+        Boolean(element),
       );
       if (focusable.length < 2) return;
 
@@ -91,111 +118,130 @@ export function Header() {
   }, [open]);
 
   const isActive = (href: string) =>
-    href === "/" ? location.pathname === "/" : location.pathname === href || location.pathname.startsWith(`${href}/`);
+    href === "/"
+      ? location.pathname === "/"
+      : location.pathname === href || location.pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur-md">
-      <div className="container-editorial flex h-[68px] items-center justify-between gap-6 md:h-[76px]">
-        <BrandMark />
+    <>
+      <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur-md">
+        <div className="container-editorial flex h-[68px] items-center justify-between gap-6 md:h-[76px]">
+          <BrandMark />
 
-        <nav aria-label="Primary navigation" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
-            {MAIN_NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  to={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className={cn(
-                    "rounded-full px-3.5 py-2 text-[0.9rem] font-semibold transition-colors",
-                    isActive(item.href) ? "bg-butter text-ink" : "text-muted hover:bg-paper-deep hover:text-ink",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav aria-label="Primary navigation" className="hidden lg:block">
+            <ul className="flex items-center gap-1">
+              {MAIN_NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    to={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    className={cn(
+                      "rounded-full px-3.5 py-2 text-[0.9rem] font-semibold transition-colors",
+                      isActive(item.href)
+                        ? "bg-butter text-ink"
+                        : "text-muted hover:bg-paper-deep hover:text-ink",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={SITE.phone.href}
-            className="hidden items-center gap-2 text-[0.85rem] font-semibold text-muted transition-colors hover:text-ink xl:flex"
-            aria-label={`Call Shine Akhanda at ${SITE.phone.display}`}
-          >
-            <Phone size={13} strokeWidth={1.6} aria-hidden="true" />
-            {SITE.phone.display}
-          </a>
-          <Link
-            to="/contact"
-            className="hidden rounded-full border-[1.5px] border-ink bg-ink px-4 py-2.5 text-[0.88rem] font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink sm:inline-flex"
-          >
-            Start a project
-          </Link>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink hover:bg-sky lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-navigation"
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href={SITE.phone.href}
+              className="hidden items-center gap-2 text-[0.85rem] font-semibold text-muted transition-colors hover:text-ink xl:flex"
+              aria-label={`Call Shine Akhanda at ${SITE.phone.display}`}
+            >
+              <Phone size={13} strokeWidth={1.6} aria-hidden="true" />
+              {SITE.phone.display}
+            </a>
+            <Link
+              to="/contact"
+              className="hidden rounded-full border-[1.5px] border-ink bg-ink px-4 py-2.5 text-[0.88rem] font-semibold text-paper transition-colors hover:bg-apricot hover:text-ink sm:inline-flex"
+            >
+              Start a project
+            </Link>
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-ink hover:bg-sky lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              aria-label={open ? "Close navigation" : "Open navigation"}
+              onClick={() => setOpen((value) => !value)}
+            >
+              {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
+      {/*
+        The menu is rendered outside <header> on purpose: the header's
+        backdrop-filter makes it the containing block for fixed children,
+        which squashed the menu to the header's height.
+      */}
       {open ? (
         <div
           ref={menuRef}
           id="mobile-navigation"
-          className="mobile-menu-enter fixed inset-x-0 bottom-0 top-[68px] z-40 overflow-y-auto border-t border-line bg-paper md:top-[76px] lg:hidden"
+          className="mobile-menu-enter fixed inset-x-0 bottom-0 top-[69px] z-40 overflow-y-auto overscroll-contain bg-paper md:top-[77px] lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
         >
-            <div className="container-editorial flex min-h-full flex-col py-8">
-              <nav aria-label="Mobile navigation">
-                <ul className="divide-y divide-line border-b border-line">
-                  {MAIN_NAV.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        to={item.href}
-                        className="group flex items-baseline justify-between gap-4 py-5"
-                        aria-current={isActive(item.href) ? "page" : undefined}
-                      >
-                        <span className="display text-[clamp(2rem,8vw,3.4rem)] transition-colors group-hover:text-muted">
+          <div className="container-editorial flex min-h-full flex-col py-8">
+            <nav aria-label="Mobile navigation">
+              <ul className="divide-y divide-line border-b border-line">
+                {MAIN_NAV.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      to={item.href}
+                      className="group flex items-center justify-between gap-4 py-4"
+                      aria-current={isActive(item.href) ? "page" : undefined}
+                    >
+                      <span className="flex flex-col">
+                        <span
+                          className={cn(
+                            "display text-[clamp(2rem,8vw,3rem)] transition-colors group-hover:text-muted",
+                            isActive(item.href) &&
+                              "underline decoration-butter-strong decoration-[6px] underline-offset-[6px]",
+                          )}
+                        >
                           {item.label}
                         </span>
                         {item.description ? (
-                          <span className="text-sm text-muted">{item.description}</span>
+                          <span className="mt-1 text-sm text-muted">{item.description}</span>
                         ) : null}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-              <div className="mt-auto grid gap-8 pt-10 sm:grid-cols-2">
-                <div>
-                  <p className="eyebrow text-muted">Talk directly</p>
-                  <a href={SITE.phone.href} className="mt-3 block font-display text-2xl">
-                    {SITE.phone.display}
-                  </a>
-                  <a href={SITE.email.href} className="mt-1 block break-all font-display text-lg">
-                    {SITE.email.display}
-                  </a>
-                  <p className="mt-1 text-sm text-muted">{SITE.location.display}</p>
-                </div>
-                <div>
-                  <p className="eyebrow text-muted">Find me online</p>
-                  <SocialLinks className="mt-3" />
-                </div>
+            <div className="mt-auto grid gap-8 pt-10 sm:grid-cols-2">
+              <div>
+                <p className="eyebrow text-muted">Talk directly</p>
+                <a href={SITE.phone.href} className="mt-3 block font-display text-2xl">
+                  {SITE.phone.display}
+                </a>
+                <a href={SITE.email.href} className="mt-1 block break-all font-display text-lg">
+                  {SITE.email.display}
+                </a>
+                <p className="mt-1 text-sm text-muted">{SITE.location.display}</p>
+              </div>
+              <div>
+                <p className="eyebrow text-muted">Find me online</p>
+                <SocialLinks className="mt-3" />
               </div>
             </div>
+          </div>
         </div>
       ) : null}
-    </header>
+    </>
   );
 }

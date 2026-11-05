@@ -40,20 +40,7 @@ async function boot() {
   }
 }
 
-if (import.meta.env.DEV) {
-  void boot();
-} else {
-  const scheduleHydration = () => {
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        void boot();
-      });
-    });
-  };
-
-  if (document.readyState === "complete") {
-    scheduleHydration();
-  } else {
-    window.addEventListener("load", scheduleHydration, { once: true });
-  }
-}
+// Module scripts run after the HTML is parsed, so hydrate straight away.
+// Waiting for window "load" kept buttons (like the mobile menu) unresponsive
+// until every image had downloaded, which takes seconds on mobile data.
+void boot();

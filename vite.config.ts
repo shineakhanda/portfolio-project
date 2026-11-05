@@ -13,6 +13,9 @@ export default defineConfig({
   build: {
     target: "es2022",
     cssCodeSplit: true,
+    // Never inline fonts as data: URIs; the Content-Security-Policy only allows
+    // fonts from the site itself (font-src 'self').
+    assetsInlineLimit: (filePath) => (/\.(woff2?|ttf|otf)$/i.test(filePath) ? false : undefined),
   },
   server: {
     port: 5173,
